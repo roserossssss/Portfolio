@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, ArrowDown } from "lucide-react";
 import { Typewriter } from "react-simple-typewriter";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Eye, ChevronRight, ChevronLeft } from "lucide-react";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { FiArrowUpRight } from "react-icons/fi";
-
+import { TbArrowUpRight } from "react-icons/tb";
 
 export default function Portfolio() {
 
@@ -25,6 +25,9 @@ export default function Portfolio() {
 
     return { ref, controls };
   };
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
 
   // About Me & Education Animation
   const aboutMeAnim = useScrollAnimation();
@@ -45,6 +48,7 @@ export default function Portfolio() {
     { logo: "html.png", name: "HTML" },
     { logo: "ts.png", name: "Typescript" },
     { logo: "jslogo.png", name: "Javascript" },
+    { logo: "nodejs.png", name: "Nodejs" },
     { logo: "mysql.png", name: "MySQL" },
     { logo: "aseprite.png", name: "Aseprite" },
     { logo: "virtualbox.png", name: "Virtualbox" },
@@ -93,18 +97,18 @@ export default function Portfolio() {
   // Past Projects Data
   const projects = [
     {
-      images: ["yapak.jpg", "yapak2.jpg", "yapak4.jpg", "yapak5.png"],
+      images: ["yapak.png", "yapak2.png", "yapak3.png", "yapak4.png", "yapak5.png", "yapak6.png"],
       title: "YAPAK",
       description: "An educational game designed to promote park ranger duties, environmental awareness, and gamified learning. Designed to be both informative and enjoyable, YAPAK encourages players to develop a deeper appreciation for nature while enhancing problem-solving and decision-making skills in a fun and interactive way.",
       technologies: ["Godot", "Aseprite"],
-      link: "https://example.com/yapak",
+      link: "https://pup-a2ip.itch.io/yapak",
     },
     {
-      images: ["yapak.jpg", "yapak2.jpg", "yapak4.jpg", "yapak5.png"],
+      images: ["masterlive.png", "masterlive2.png", "masterlive3.png", "masterlive4.png", "masterlive5.png", "masterlive6.png", "masterlive7.png", "masterlive8.png", "masterlive9.png", "masterlive10.png"],
       title: "Master LiveAboards",
-      description: "An educational game designed to promote park ranger duties, environmental awareness, and gamified learning. Designed to be both informative and enjoyable, YAPAK encourages players to develop a deeper appreciation for nature while enhancing problem-solving and decision-making skills in a fun and interactive way.",
-      technologies: ["Nextjs", "Typescript"],
-      link: "https://example.com/masterliveaboards",
+      description: "Master provides a seamless and user-friendly digital platform for divers and administrators alike. Offering smooth account management, secure access, and intuitive features designed for a world-class underwater adventure experience. It brings convenience and control together, making every dive easier to plan and manage",
+      technologies: ["Nextjs", "Nodejs", "Typescript"],
+      link: "https://github.com/roserossssss/dive-site",
     }
   ];
 
@@ -118,6 +122,7 @@ export default function Portfolio() {
       </div>
 
       {/* Main Section */}
+      <section id="landing"></section>
       <div className="flex items-center justify-center gap-8 mt-10 min-h-[95vh] h-[50px] border-l-400 border-black">
         <motion.img
           src="/me.jpg"
@@ -181,6 +186,7 @@ export default function Portfolio() {
         </motion.div>
       </div>
 
+      <section id="about"></section>
       <div className="min-h-[60vh] flex items-center justify-center bg-gray-100 px-9 gap-12">
         {/* About Me & Education Section */}
         <motion.div
@@ -274,6 +280,7 @@ export default function Portfolio() {
       </div>
 
       {/* Skills Section */}
+      <section id="skills"></section>
       <motion.div
         id="skills-section"
         ref={skillCardsAnim.ref}
@@ -345,6 +352,7 @@ export default function Portfolio() {
 
 
       {/* Past Projects Section */}
+      <section id="skills"></section>
       <section className="min-h-screen flex flex-col items-center justify-center bg-white px-8 py-20 relative">
         <motion.div
           id="projects-section"
@@ -421,13 +429,13 @@ export default function Portfolio() {
                   <h3 className="text-3xl font-semibold font-poppins italic text-gray-900">
                     {project.title || "Untitled Project"}
                   </h3>
-                  <p className="text-black mt-2 text-lg max-w-[700px]">
+                  <p className="text-black mt-3 text-lg max-w-[700px]">
                     {project.description || "No description available."}
                   </p>
 
-                  <div className="w-full flex justify-between items-center mt-4">
+                  <div className="w-full flex justify-between items-center mt-5">
                     {/* Icons on the left */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 mt-2">
                       {project.technologies?.includes("Godot") && (
                         <img src="/godot.png" alt="Godot" className="w-8 h-8" />
                       )}
@@ -437,9 +445,13 @@ export default function Portfolio() {
                       {project.technologies?.includes("Nextjs") && (
                         <img src="/nextjs.png" alt="Nextjs" className="w-8 h-8" />
                       )}
+                      {project.technologies?.includes("Nodejs") && (
+                        <img src="/nodejs.png" alt="Nodejs" className="w-8 h-8" />
+                      )}
                       {project.technologies?.includes("Typescript") && (
                         <img src="/ts.png" alt="Typescript" className="w-8 h-8" />
                       )}
+                      
                     </div>
 
 
@@ -450,7 +462,7 @@ export default function Portfolio() {
                         rel="noopener noreferrer"
                         className="group flex items-center gap-1 text-lg text-black cursor-pointer transform transition-transform duration-300 hover:-translate-y-1"
                       >
-                        <span className="font-medium">View</span>
+                        <span className="font-medium mt-2">View</span>
                         <FiArrowUpRight
                           size={16}
                           className="transition-colors duration-300 group-hover:text-blue-900"
@@ -473,42 +485,108 @@ export default function Portfolio() {
         className="w-full bg-gray-100 py-44 px-8 flex justify-center items-center"
       >
         <div className="w-full max-w-7xl flex flex-col lg:flex-row items-stretch justify-between gap-12">
-          {/* Contact Form & Text */}
+          {/* Contact Form */}
           <div className="flex-1">
             <h2 className="text-5xl font-bold font-poppins italic mb-6 text-gray-900">
               Contact
             </h2>
 
             <p className="text-lg text-gray-700 max-w-md mb-8">
-              Feel free to reach out if you have any questions, project ideas, or just want to connect!
+              Feel free to reach out if you have any questions, project ideas, job offers, or just want to connect!
             </p>
 
-            <form className="w-full max-w-md space-y-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <textarea
-                rows="5"
-                placeholder="Your Message"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+            <form className="w-full max-w-md space-y-6">
+
+              {/* Name Field */}
+              <div className="relative">
+                <input
+                  type="text"
+                  id="name"
+                  placeholder=" "
+                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-0 transition-all duration-200 ease-in-out"
+                  required
+                />
+                <label
+                  htmlFor="email"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
+    peer-placeholder-shown:top-1/2 
+    peer-placeholder-shown:text-sm 
+    peer-focus:top-0 
+    peer-focus:translate-y-0 
+    peer-focus:text-xs 
+    peer-[&:not(:placeholder-shown)]:top-0 
+    peer-[&:not(:placeholder-shown)]:translate-y-0 
+    peer-[&:not(:placeholder-shown)]:text-xs"
+                >
+                  Your Name
+                </label>
+
+              </div>
+
+              {/* Email Field */}
+              <div className="relative">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder=" "
+                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-0 transition-all duration-200 ease-in-out"
+                  required
+                />
+                <label
+                  htmlFor="email"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
+    peer-placeholder-shown:top-1/2 
+    peer-placeholder-shown:text-sm 
+    peer-focus:top-0 
+    peer-focus:translate-y-0 
+    peer-focus:text-xs 
+    peer-[&:not(:placeholder-shown)]:top-0 
+    peer-[&:not(:placeholder-shown)]:translate-y-0 
+    peer-[&:not(:placeholder-shown)]:text-xs"
+                >
+                  Your Email
+                </label>
+
+              </div>
+
+              {/* Message Field */}
+              <div className="relative">
+                <textarea
+                  id="message"
+                  rows={5}
+                  placeholder=" "
+                  className="peer w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-0 transition-all duration-200 ease-in-out"
+                  required
+                />
+                <label
+                  htmlFor="email"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
+    peer-placeholder-shown:top-1/2 
+    peer-placeholder-shown:text-sm 
+    peer-focus:top-0 
+    peer-focus:translate-y-0 
+    peer-focus:text-xs 
+    peer-[&:not(:placeholder-shown)]:top-0 
+    peer-[&:not(:placeholder-shown)]:translate-y-0 
+    peer-[&:not(:placeholder-shown)]:text-xs"
+                >
+                  Your Message
+                </label>
+
+              </div>
+
+              {/* Submit Button */}
               <button
                 type="submit"
-                className="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition duration-300"
+                className="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition duration-300 flex items-center gap-2"
               >
                 Send Message
+                <TbArrowUpRight className="w-5 h-5" />
               </button>
+
             </form>
           </div>
 
-          {/* Vertical Divider */}
           <div className="hidden lg:block w-0.5 bg-gray-400 mx-7"></div>
 
           {/* Resume Download Section */}
@@ -524,11 +602,10 @@ export default function Portfolio() {
         </div>
       </section>
 
-
       {/* Social Links */}
       <div className="fixed bottom-20 right-6 flex flex-row items-center space-x-4 z-50">
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/roserossssss"
           target="_blank"
           rel="noopener noreferrer"
           className="text-black hover:text-blue-500 transition duration-300"
@@ -536,7 +613,7 @@ export default function Portfolio() {
           <Github size={36} />
         </a>
         <a
-          href="https://linkedin.com/in/yourname"
+          href="www.linkedin.com/in/althea-rose-sardaña-335b60297"
           target="_blank"
           rel="noopener noreferrer"
           className="text-black hover:text-blue-500 transition duration-300"
@@ -544,26 +621,70 @@ export default function Portfolio() {
           <Linkedin size={28} />
         </a>
         <a
-          href="mailto:your.email@example.com"
+          href="mailto:queeniesardana95@gmail.com"
           className="text-black hover:text-blue-500 transition duration-300"
         >
           <Mail size={36} />
         </a>
       </div>
 
-
       {/* Footer Section */}
-      <footer className="fixed bottom-0 left-0 w-full h-16 bg-black py-6 flex items-center justify-between px-10">
+      <footer className="fixed bottom-0 left-0 w-full h-16 bg-black py-6 flex items-center justify-between px-10 z-50">
         <div className="w-1/3"></div>
 
-        <button
-          className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black hover:bg-gray-300 transition duration-300"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          <ArrowUp size={24} />
-        </button>
-      </footer>
+        <div className="relative flex flex-col items-center">
+          {/* Dropdown Menu */}
+          {dropdownOpen && (
+            <div className="absolute bottom-16 mb-2 w-40 bg-white rounded-lg shadow-lg py-2 text-sm font-medium text-black">
+              <button
+                onClick={() => {
+                  document.getElementById("landing")?.scrollIntoView({ behavior: "smooth" });
+                  setDropdownOpen(false);
+                }}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                Landing Page
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                  setDropdownOpen(false);
+                }}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                About Me
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+                  setDropdownOpen(false);
+                }}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                Skills
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                  setDropdownOpen(false);
+                }}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                Projects
+              </button>
+            </div>
+          )}
 
+
+          {/* Arrow Button */}
+          <button
+            className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black hover:bg-gray-300 transition duration-300"
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+          >
+            {dropdownOpen ? <ArrowDown size={24} /> : <ArrowUp size={24} />}
+          </button>
+        </div>
+      </footer>
     </div>
   );
 }
