@@ -187,7 +187,7 @@ export default function Portfolio() {
       </div>
 
       <section id="about"></section>
-      <div className="min-h-[60vh] flex items-center justify-center bg-gray-100 px-9 gap-12">
+      <div className="min-h-[80vh] flex items-center justify-center bg-gray-100 px-9 gap-12">
         {/* About Me & Education Section */}
         <motion.div
           id="about-section"
@@ -200,7 +200,7 @@ export default function Portfolio() {
           }}
           className="w-1/2"
         >
-          <h2 className="text-8xl font-bold mb-10 font-oppins italic">About Me</h2>
+          <h2 className="text-8xl font-bold mt-10 font-oppins italic">About Me</h2>
           <p className="text-lg mb-15 font-poppins">  An entry-level IT talent eager to
             build with purpose, learn with
             curiosity, and grow with every
@@ -296,47 +296,46 @@ export default function Portfolio() {
         }}
         className="relative flex flex-col items-center justify-start bg-white px-8 py-12"
       >
-        <h2 className="text-6xl md:text-8xl font-bold mb-20 font-poppins italic text-center text-gray-900">
+        <h2 className="text-6xl md:text-8xl font-bold mb-20 italic text-center text-gray-900">
           Skills
         </h2>
 
-        {/* Horizontally Scrollable Skill Cards */}
-        <div className="w-full overflow-x-auto">
-          <div className="flex space-x-10 px-4 min-w-fit perspective-[1000px] ml-28">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={index}
-                className="min-w-[250px] h-[350px] rounded-2xl text-black shadow-xl transition-all duration-700 transform-style-preserve-3d"
-                initial={{ rotateY: 180, backgroundColor: "#000000", opacity: 0 }}
-                whileInView={{
-                  rotateY: 0,
-                  backgroundColor: "#ffffff",
-                  opacity: 1,
-                  transition: {
-                    duration: 0.8,
-                    delay: index * 0.2,
-                  },
-                }}
-                viewport={{ once: true, amount: 0.5 }}
-                style={{
-                  backfaceVisibility: "hidden",
-                }}
-              >
-                <div className="flex flex-col items-center justify-center h-full space-y-6">
-                  <img
-                    src={skill.logo}
-                    alt={skill.name}
-                    className="w-24 h-24 object-contain"
-                  />
-                  <span className="text-2xl font-semibold font-poppins">
-                    {skill.name}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="flex flex-wrap justify-center gap-10 w-full max-w-6xl px-4">
+          {skills.map((skill, index) => (
+            <motion.div
+              key={index}
+              className="w-[250px] h-[350px] rounded-2xl text-black bg-white shadow-md transition duration-500 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.75)]"
+              initial={{ rotateY: 180, backgroundColor: "#000000", opacity: 0 }}
+              whileInView={{
+                rotateY: 0,
+                backgroundColor: "#ffffff",
+                opacity: 1,
+                transition: {
+                  duration: 0.8,
+                  delay: index * 0.2,
+                },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
+              style={{ backfaceVisibility: "hidden" }}
+            >
+              <div className="flex flex-col items-center justify-center h-full space-y-6">
+                <img
+                  src={skill.logo}
+                  alt={skill.name}
+                  className="w-24 h-24 object-contain"
+                />
+                <span className="text-2xl font-semibold whitespace-nowrap">
+                  {skill.name}
+                </span>
+              </div>
+            </motion.div>
+
+          ))}
         </div>
       </motion.div>
+
+
+
 
 
       {/* Section Divider */}
@@ -451,26 +450,37 @@ export default function Portfolio() {
                       {project.technologies?.includes("Typescript") && (
                         <img src="/ts.png" alt="Typescript" className="w-8 h-8" />
                       )}
-                      
+
                     </div>
-
-
                     {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-1 text-lg text-black cursor-pointer transform transition-transform duration-300 hover:-translate-y-1"
-                      >
-                        <span className="font-medium mt-2">View</span>
-                        <FiArrowUpRight
-                          size={16}
-                          className="transition-colors duration-300 group-hover:text-blue-900"
-                        />
-                      </a>
+                      project.title?.toLowerCase() === "yapak" ? (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 hover:bg-green-700"
+                        >
+                          <span>View</span>
+                          <FiArrowUpRight
+                            size={16}
+                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                          />
+                        </a>
+                      ) : (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 hover:bg-blue-900"
+                        >
+                          <span>View</span>
+                          <FiArrowUpRight
+                            size={16}
+                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                          />
+                        </a>
+                      )
                     )}
-
-
                   </div>
                 </div>
               </motion.div>
@@ -613,7 +623,7 @@ export default function Portfolio() {
           <Github size={36} />
         </a>
         <a
-          href="www.linkedin.com/in/althea-rose-sardaña-335b60297"
+          href="https://www.linkedin.com/in/althea-rose-sardaña-335b60297"
           target="_blank"
           rel="noopener noreferrer"
           className="text-black hover:text-blue-500 transition duration-300"
@@ -621,7 +631,7 @@ export default function Portfolio() {
           <Linkedin size={28} />
         </a>
         <a
-          href="mailto:queeniesardana95@gmail.com"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=queeniesardana95@gmail.com"
           className="text-black hover:text-blue-500 transition duration-300"
         >
           <Mail size={36} />
@@ -634,47 +644,49 @@ export default function Portfolio() {
 
         <div className="relative flex flex-col items-center">
           {/* Dropdown Menu */}
-          {dropdownOpen && (
-            <div className="absolute bottom-16 mb-2 w-40 bg-white rounded-lg shadow-lg py-2 text-sm font-medium text-black">
-              <button
-                onClick={() => {
-                  document.getElementById("landing")?.scrollIntoView({ behavior: "smooth" });
-                  setDropdownOpen(false);
-                }}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-              >
-                Landing Page
-              </button>
-              <button
-                onClick={() => {
-                  document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-                  setDropdownOpen(false);
-                }}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-              >
-                About Me
-              </button>
-              <button
-                onClick={() => {
-                  document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
-                  setDropdownOpen(false);
-                }}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-              >
-                Skills
-              </button>
-              <button
-                onClick={() => {
-                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-                  setDropdownOpen(false);
-                }}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-              >
-                Projects
-              </button>
-            </div>
-          )}
-
+          <div
+            className={`absolute bottom-16 mb-2 w-40 bg-white rounded-lg shadow-lg py-2 text-sm font-medium text-black
+    transition-all duration-300 ease-out transform origin-top
+    ${dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
+  `}
+          >
+            <button
+              onClick={() => {
+                document.getElementById("landing")?.scrollIntoView({ behavior: "smooth" });
+                setDropdownOpen(false);
+              }}
+              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+            >
+              Landing Page
+            </button>
+            <button
+              onClick={() => {
+                document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                setDropdownOpen(false);
+              }}
+              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+            >
+              About Me
+            </button>
+            <button
+              onClick={() => {
+                document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+                setDropdownOpen(false);
+              }}
+              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+            >
+              Skills
+            </button>
+            <button
+              onClick={() => {
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                setDropdownOpen(false);
+              }}
+              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+            >
+              Projects
+            </button>
+          </div>
 
           {/* Arrow Button */}
           <button
