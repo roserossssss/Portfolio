@@ -12,9 +12,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"], // Add Poppins font
+        poppins: ["Poppins", "sans-serif"], 
       },
     },
   },
   plugins: [],
+
+  
 };
