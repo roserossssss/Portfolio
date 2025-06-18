@@ -135,81 +135,82 @@ export default function Portfolio() {
     );
   };
 
-
-
-
   return (
     <div className="min-h-screen bg-white text-black">
-      <div className="absolute top-5 left-5">
-        <div className="w-screen bg-black text-white h-30 flex items-center fixed top-0 left-0 z-50">
-          <h1 className="text-7xl font-bold font-serif italic pl-6">Portfolio</h1>
-        </div>s
+      {/* Header */}
+      <div className="w-full bg-black text-white py-4 px-6 fixed top-0 left-0 z-50 shadow-md">
+        <h1 className="text-4xl md:text-6xl font-bold font-serif italic">Portfolio</h1>
       </div>
 
       {/* Main Section */}
-      <section id="landing"></section>
-      <div className="flex items-center justify-center gap-8 mt-10 min-h-[95vh] h-[50px] border-l-400 border-black">
-        <motion.img
-          src="/me.jpg"
-          alt="photo"
-          className="w-[470px] h-[750px] object-cover mt-78 shadow-5xl shadow-black/500 relative ml-[-500px]"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-        />
-
-        <motion.div
-          className="-mt-5"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          <h2 className="text-8xl font-bold font-poppins italic mt-50">
-            Althea Rose S. Sardana
-          </h2>
-
-          <h3 className="text-2xl font-medium text-gray-800 mt-2">
-            <Typewriter
-              words={['Front End Developer', 'Graphic Artist']}
-              loop={true}
-              cursor
-              cursorStyle="_"
-              typeSpeed={120}
-              deleteSpeed={90}
-              delaySpeed={1200}
+      <section id="landing" className="pt-32 px-4 sm:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-10 min-h-[90vh]">
+          {/* Responsive Image */}
+          <motion.div
+            className="w-full max-w-[400px] aspect-[2/3] shadow-xl shadow-black/50 rounded-lg overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <img
+              src="/me.jpg"
+              alt="photo"
+              className="w-full h-full object-cover"
             />
-          </h3>
+          </motion.div>
 
-          <hr className="border-t-1 border-black mt-7 w-[900px]" />
-          {/* Navigation Links */}
-          <div className="flex items-center gap-6 text-2xl mt-2 self-start ml-1">
-            <button
-              className="cursor-pointer hover:italic focus:outline-none"
-              onClick={() => document.getElementById("about-section").scrollIntoView({ behavior: "smooth" })}
-            >
-              About Me
-            </button>
+          {/* Text Content */}
+          <motion.div
+            className="text-center lg:text-left max-w-2xl"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-poppins italic whitespace-nowrap">
+              Althea Rose S. Sardana
+            </h2>
 
-            <span>|</span>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 mt-3">
+              <Typewriter
+                words={['Front End Developer', 'Graphic Artist']}
+                loop={true}
+                cursor
+                cursorStyle="_"
+                typeSpeed={120}
+                deleteSpeed={90}
+                delaySpeed={1200}
+              />
+            </h3>
 
-            <button
-              className="cursor-pointer hover:italic focus:outline-none"
-              onClick={() => document.getElementById("skills-section").scrollIntoView({ behavior: "smooth" })}
-            >
-              Skills
-            </button>
+            <hr className="border-t mt-6 border-black w-full" />
 
-            <span>|</span>
+            {/* Navigation Buttons */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-lg mt-4">
+              <button
+                className="hover:italic"
+                onClick={() => document.getElementById("about-section")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                About Me
+              </button>
+              <span>|</span>
+              <button
+                className="hover:italic"
+                onClick={() => document.getElementById("skills-section")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                Skills
+              </button>
+              <span>|</span>
+              <button
+                className="hover:italic"
+                onClick={() => document.getElementById("projects-section")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                Past Projects
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-            <button
-              className="cursor-pointer hover:italic focus:outline-none"
-              onClick={() => document.getElementById("projects-section").scrollIntoView({ behavior: "smooth" })}
-            >
-              Past Projects
-            </button>
-          </div>
-        </motion.div>
-      </div>
 
       <section id="about"></section>
       <div className="min-h-[80vh] flex items-center justify-center bg-gray-100 px-9 gap-12">
@@ -499,8 +500,8 @@ export default function Portfolio() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className={`group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 ${project.title?.toLowerCase() === "yapak"
-                              ? "hover:bg-green-700"
-                              : "hover:bg-blue-900"
+                            ? "hover:bg-green-700"
+                            : "hover:bg-blue-900"
                             }`}
                         >
                           <span>View</span>
