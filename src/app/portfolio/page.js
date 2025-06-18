@@ -112,6 +112,31 @@ export default function Portfolio() {
     }
   ];
 
+  const [imageIndices, setImageIndices] = useState(projects.map(() => 0));
+
+  const nextImage = (projectIndex) => {
+    setImageIndices((prev) =>
+      prev.map((value, i) =>
+        i === projectIndex
+          ? (value + 1) % projects[projectIndex].images.length
+          : value
+      )
+    );
+  };
+
+  const prevImage = (projectIndex) => {
+    setImageIndices((prev) =>
+      prev.map((value, i) =>
+        i === projectIndex
+          ? (value - 1 + projects[projectIndex].images.length) %
+          projects[projectIndex].images.length
+          : value
+      )
+    );
+  };
+
+
+
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -334,10 +359,6 @@ export default function Portfolio() {
         </div>
       </motion.div>
 
-
-
-
-
       {/* Section Divider */}
       <section className="h-[15vh] flex flex-col items-center justify-center bg-gray-100 px-8 mt-20">
         <motion.p
@@ -364,128 +385,136 @@ export default function Portfolio() {
           }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16"
         >
-          {Array.isArray(projects) && projects.length > 0 && projects.map((project, index) => {
-            const [currentImageIndex, setCurrentImageIndex] = useState(0);
+          {Array.isArray(projects) &&
+            projects.length > 0 &&
+            projects.map((project, index) => {
+              const currentImageIndex = imageIndices[index];
 
-            const nextImage = () => {
-              setCurrentImageIndex((prevIndex) =>
-                prevIndex === project.images.length - 1 ? 0 : prevIndex + 1
-              );
-            };
+              return (
+                <motion.div
+                  key={project.id}
+                  className="flex flex-col items-center max-w-[750px] w-full"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.8, delay: index * 0.2 }
+                  }}
+                >
+                  {/* Project Image */}
+                  <div className="relative w-full">
+                    <motion.img
+                      src={project.images[currentImageIndex]}
+                      alt={project.title}
+                      className="w-full h-[400px] object-cover shadow-lg rounded-lg transition-transform duration-300"
+                      key={currentImageIndex}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                        transition: { duration: 0.5 }
+                      }}
+                      exit={{ opacity: 0, x: 20 }}
+                      whileHover={{
+                        scaleY: 0.95,
+                        scaleX: 0.95,
+                        transformOrigin: "bottom",
+                        transition: { duration: 0.3, ease: "easeOut" }
+                      }}
+                    />
 
-            const prevImage = () => {
-              setCurrentImageIndex((prevIndex) =>
-                prevIndex === 0 ? project.images.length - 1 : prevIndex - 1
-              );
-            };
-
-            return (
-              <motion.div
-                key={project.id}
-                className="flex flex-col items-center max-w-[750px] w-full"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: index * 0.2 } }}
-              >
-                {/* Project Image */}
-                <div className="relative w-full">
-                  <motion.img
-                    src={project.images[currentImageIndex]}
-                    alt={project.title}
-                    className="w-full h-[400px] object-cover shadow-lg rounded-lg transition-transform duration-300"
-                    key={currentImageIndex}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
-                    exit={{ opacity: 0, x: 20 }}
-                    whileHover={{
-                      scaleY: 0.95,
-                      scaleX: 0.95,
-                      transformOrigin: "bottom",
-                      transition: { duration: 0.3, ease: "easeOut" }
-                    }}
-                  />
-
-                  {project.images.length > 1 && (
-                    <>
-                      <button
-                        onClick={prevImage}
-                        className="absolute top-1/2 left-2 transform -translate-y-1/2 transition-all duration-300 hover:scale-110"
-                      >
-                        <ChevronLeft size={40} className="text-white drop-shadow-lg" />
-                      </button>
-
-                      <button
-                        onClick={nextImage}
-                        className="absolute top-1/2 right-2 transform -translate-y-1/2 transition-all duration-300 hover:scale-110"
-                      >
-                        <ChevronRight size={40} className="text-white drop-shadow-lg" />
-                      </button>
-                    </>
-                  )}
-                </div>
-
-                {/* Project Info */}
-                <div className="mt-6 w-full flex flex-col items-start px-2">
-                  <h3 className="text-3xl font-semibold font-poppins italic text-gray-900">
-                    {project.title || "Untitled Project"}
-                  </h3>
-                  <p className="text-black mt-3 text-lg max-w-[700px]">
-                    {project.description || "No description available."}
-                  </p>
-
-                  <div className="w-full flex justify-between items-center mt-5">
-                    {/* Icons on the left */}
-                    <div className="flex items-center gap-4 mt-2">
-                      {project.technologies?.includes("Godot") && (
-                        <img src="/godot.png" alt="Godot" className="w-8 h-8" />
-                      )}
-                      {project.technologies?.includes("Aseprite") && (
-                        <img src="/aseprite.png" alt="Aseprite" className="w-8 h-8" />
-                      )}
-                      {project.technologies?.includes("Nextjs") && (
-                        <img src="/nextjs.png" alt="Nextjs" className="w-8 h-8" />
-                      )}
-                      {project.technologies?.includes("Nodejs") && (
-                        <img src="/nodejs.png" alt="Nodejs" className="w-8 h-8" />
-                      )}
-                      {project.technologies?.includes("Typescript") && (
-                        <img src="/ts.png" alt="Typescript" className="w-8 h-8" />
-                      )}
-
-                    </div>
-                    {project.link && (
-                      project.title?.toLowerCase() === "yapak" ? (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 hover:bg-green-700"
+                    {project.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={() => prevImage(index)}
+                          className="absolute top-1/2 left-2 transform -translate-y-1/2 transition-all duration-300 hover:scale-110"
                         >
-                          <span>View</span>
-                          <FiArrowUpRight
-                            size={16}
-                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                          <ChevronLeft
+                            size={40}
+                            className="text-white drop-shadow-lg"
                           />
-                        </a>
-                      ) : (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 hover:bg-blue-900"
+                        </button>
+
+                        <button
+                          onClick={() => nextImage(index)}
+                          className="absolute top-1/2 right-2 transform -translate-y-1/2 transition-all duration-300 hover:scale-110"
                         >
-                          <span>View</span>
-                          <FiArrowUpRight
-                            size={16}
-                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                          <ChevronRight
+                            size={40}
+                            className="text-white drop-shadow-lg"
                           />
-                        </a>
-                      )
+                        </button>
+                      </>
                     )}
                   </div>
-                </div>
-              </motion.div>
-            );
-          })}
+
+                  {/* Project Info */}
+                  <div className="mt-6 w-full flex flex-col items-start px-2">
+                    <h3 className="text-3xl font-semibold font-poppins italic text-gray-900">
+                      {project.title || "Untitled Project"}
+                    </h3>
+                    <p className="text-black mt-3 text-lg max-w-[700px]">
+                      {project.description || "No description available."}
+                    </p>
+
+                    <div className="w-full flex justify-between items-center mt-5">
+                      {/* Icons on the left */}
+                      <div className="flex items-center gap-4 mt-2">
+                        {project.technologies?.includes("Godot") && (
+                          <img
+                            src="/godot.png"
+                            alt="Godot"
+                            className="w-8 h-8"
+                          />
+                        )}
+                        {project.technologies?.includes("Aseprite") && (
+                          <img
+                            src="/aseprite.png"
+                            alt="Aseprite"
+                            className="w-8 h-8"
+                          />
+                        )}
+                        {project.technologies?.includes("Nextjs") && (
+                          <img
+                            src="/nextjs.png"
+                            alt="Nextjs"
+                            className="w-8 h-8"
+                          />
+                        )}
+                        {project.technologies?.includes("Nodejs") && (
+                          <img
+                            src="/nodejs.png"
+                            alt="Nodejs"
+                            className="w-8 h-8"
+                          />
+                        )}
+                        {project.technologies?.includes("Typescript") && (
+                          <img src="/ts.png" alt="Typescript" className="w-8 h-8" />
+                        )}
+                      </div>
+
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 ${project.title?.toLowerCase() === "yapak"
+                              ? "hover:bg-green-700"
+                              : "hover:bg-blue-900"
+                            }`}
+                        >
+                          <span>View</span>
+                          <FiArrowUpRight
+                            size={16}
+                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                          />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
         </motion.div>
       </section>
 
