@@ -601,7 +601,7 @@ export default function Portfolio() {
       </section>
 
       {/* Social Links */}
-      <div className="fixed bottom-17 right-9 sm:bottom-18 sm:right-8 flex flex-row items-center space-x-3 sm:space-x-4 z-50">
+      <div className="fixed bottom-17 right-9 sm:bottom-18 sm:right-7 flex flex-row items-center space-x-3 sm:space-x-4 z-50">
         <a
           href="https://github.com/roserossssss"
           target="_blank"
