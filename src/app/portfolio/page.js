@@ -139,7 +139,7 @@ export default function Portfolio() {
     <div className="min-h-screen bg-white text-black">
       {/* Header */}
       <div className="w-full bg-black text-white py-4 px-6 fixed top-0 left-0 z-50 shadow-md">
-        <h1 className="text-4xl md:text-6xl font-bold font-serif italic">Portfolio</h1>
+        <h1 className="text-4xl md:text-5xl font-bold font-serif italic">Portfolio</h1>
       </div>
 
       {/* Main Section */}
@@ -350,7 +350,7 @@ export default function Portfolio() {
                   alt={skill.name}
                   className="w-24 h-24 object-contain"
                 />
-                <span className="text-2xl font-semibold whitespace-nowrap">
+                <span className="text-2xl font-semibold text-center w-full break-words">
                   {skill.name}
                 </span>
               </div>
@@ -650,7 +650,7 @@ export default function Portfolio() {
           rel="noopener noreferrer"
           className="text-black hover:text-blue-500 transition duration-300"
         >
-          <Github size={36} />
+          <Github size={28} />
         </a>
         <a
           href="https://www.linkedin.com/in/althea-rose-sardaña-335b60297"
@@ -664,7 +664,7 @@ export default function Portfolio() {
           href="https://mail.google.com/mail/?view=cm&fs=1&to=queeniesardana95@gmail.com"
           className="text-black hover:text-blue-500 transition duration-300"
         >
-          <Mail size={36} />
+          <Mail size={28} />
         </a>
       </div>
 
@@ -720,7 +720,7 @@ export default function Portfolio() {
 
           {/* Arrow Button */}
           <button
-            className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black hover:bg-gray-300 transition duration-300"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-black hover:bg-gray-300 transition duration-300"
             onClick={() => setDropdownOpen(!dropdownOpen)}
           >
             {dropdownOpen ? <ArrowDown size={24} /> : <ArrowUp size={24} />}
