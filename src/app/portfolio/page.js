@@ -139,15 +139,17 @@ export default function Portfolio() {
     <div className="min-h-screen bg-white text-black">
       {/* Header */}
       <div className="w-full bg-black text-white py-4 px-6 fixed top-0 left-0 z-50 shadow-md">
-        <h1 className="text-4xl md:text-5xl font-bold font-serif italic">Portfolio</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif italic">
+          Portfolio
+        </h1>
       </div>
 
       {/* Main Section */}
-      <section id="landing" className="pt-32 px-4 sm:px-8">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-10 min-h-[90vh]">
-          {/* Responsive Image */}
+      <section id="landing" className="pt-32 px-4 sm:px-6 md:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-10 min-h-[90vh]">
+          {/* Image on top for sm/md, left for lg+ */}
           <motion.div
-            className="w-full max-w-[400px] aspect-[2/3] shadow-xl shadow-black/50 rounded-lg overflow-hidden"
+            className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px] aspect-[2/3] shadow-xl shadow-black/50 rounded-lg overflow-hidden"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
@@ -159,18 +161,18 @@ export default function Portfolio() {
             />
           </motion.div>
 
-          {/* Text Content */}
+          {/* Text below image for sm/md, right of image for lg+ */}
           <motion.div
-            className="text-center lg:text-left max-w-2xl"
+            className="text-center lg:text-left w-full max-w-xl sm:max-w-2xl px-2 sm:px-4"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-poppins italic whitespace-nowrap">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-poppins italic whitespace-nowrap">
               Althea Rose S. Sardana
             </h2>
 
-            <h3 className="text-lg sm:text-xl md:text-2xl font-medium text-gray-800 mt-3">
+            <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-gray-800 mt-3">
               <Typewriter
                 words={['Front End Developer', 'Graphic Artist']}
                 loop={true}
@@ -184,8 +186,7 @@ export default function Portfolio() {
 
             <hr className="border-t mt-6 border-black w-full" />
 
-            {/* Navigation Buttons */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-lg mt-4">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 text-xs sm:text-sm md:text-base mt-4">
               <button
                 className="hover:italic"
                 onClick={() => document.getElementById("about-section")?.scrollIntoView({ behavior: "smooth" })}
@@ -211,9 +212,8 @@ export default function Portfolio() {
         </div>
       </section>
 
-
       <section id="about"></section>
-      <div className="min-h-[80vh] flex items-center justify-center bg-gray-100 px-9 gap-12">
+      <div className="min-h-[80vh] flex flex-col lg:flex-row items-center justify-center bg-gray-100 px-6 sm:px-9 gap-12">
         {/* About Me & Education Section */}
         <motion.div
           id="about-section"
@@ -224,47 +224,42 @@ export default function Portfolio() {
             hidden: { opacity: 0, x: -50 },
             visible: { opacity: 1, x: 0, transition: { duration: 1 } }
           }}
-          className="w-1/2"
+          className="w-full lg:w-1/2"
         >
-          <h2 className="text-8xl font-bold mt-10 font-oppins italic">About Me</h2>
-          <p className="text-lg mb-15 font-poppins">  An entry-level IT talent eager to
-            build with purpose, learn with
-            curiosity, and grow with every
-            opportunity.
+          <h2 className="text-4xl sm:text-6xl lg:text-8xl font-bold mt-7 font-oppins italic">About Me</h2>
+          <p className="text-base sm:text-sm py-3 font-poppins">
+            An entry-level IT talent eager to build with purpose, learn with curiosity, and grow with every opportunity.
           </p>
 
-          <h2 className="text-4xl font-bold mb-5">Educational History</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Educational History</h2>
           {education.map((edu, index) => (
-            <div key={edu.id} className="relative pl-8">
+            <div key={edu.id} className="relative pl-8 mb-4">
               <div className="absolute left-6 top-0 h-full w-1 bg-black"></div>
               <div className="absolute left-5 top-2 w-3 h-3 bg-black rounded-full"></div>
               <div className="pl-4">
-                <h3 className="text-2xl font-semibold">{edu.institution}</h3>
-                <p className="text-gray-700">{edu.degree}</p>
-                <span className="text-gray-500">{edu.year}</span>
+                <h3 className="text-xl sm:text-xl font-semibold">{edu.institution}</h3>
+                <p className="text-gray-700 text-sm lg:text-lg">{edu.degree}</p>
+                <span className="text-gray-500 text-sm">{edu.year}</span>
               </div>
             </div>
           ))}
 
           {/* Work Experience Section */}
-          <h2 className="text-4xl font-bold mb-5 mt-12">Work Experience</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-5 mt-12">Work Experience</h2>
           {workExperience.map((work, index) => (
             <div key={index} className="relative pl-8 mb-6">
               <div className="absolute left-6 top-0 h-full w-1 bg-black"></div>
               <div className="absolute left-5 top-2 w-3 h-3 bg-black rounded-full"></div>
               <div className="pl-4">
-                <h3 className="text-2xl font-semibold">{work.company}</h3>
-                <p className="text-gray-700">{work.role}</p>
-                <span className="text-gray-500">{work.duration}</span>
-                <p className="text-md text-gray-600 mt-1">{work.description}</p>
+                <h3 className="text-xl sm:text-2xl font-semibold">{work.company}</h3>
+                <p className="text-gray-700 text-sm lg:text-lg">{work.role}</p>
+                <span className="text-gray-500 text-sm">{work.duration}</span>
+                <p className="text-sm sm:text-md text-gray-600 mt-1">{work.description}</p>
               </div>
             </div>
           ))}
-
         </motion.div>
 
-
-        {/* Technical Skills Section */}
         <motion.div
           ref={skillsAnim.ref}
           initial="hidden"
@@ -273,31 +268,31 @@ export default function Portfolio() {
             hidden: { opacity: 0, x: 50 },
             visible: { opacity: 1, x: 0, transition: { duration: 1 } }
           }}
-          className="w-1/2 flex flex-col gap-6"
+          className="w-full lg:w-1/2 flex flex-col gap-6"
         >
-          <h2 className="text-5xl font-bold font-poppins italic w-full text-center mb-1 -mt-2">Technical Skills</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-poppins italic w-full text-center mb-1 -mt-2">
+            Technical Skills
+          </h2>
 
-          {/* First Row: First 5 Skills */}
           <div className="flex justify-center flex-wrap gap-x-6 gap-y-4">
             {techSkills.slice(0, 7).map((skill, index) => (
               <motion.img
                 key={index}
                 src={skill.logo}
                 alt={skill.name}
-                className="w-16 h-16 object-contain shadow-lg rounded-full"
+                className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 object-contain shadow-lg rounded-full"
                 whileHover={{ scale: 1.1 }}
               />
             ))}
           </div>
 
-          {/* Second Row: Remaining 4 Skills */}
           <div className="flex justify-center flex-wrap gap-x-6 gap-y-4">
             {techSkills.slice(7).map((skill, index) => (
               <motion.img
-                key={index + 5}
+                key={index + 7}
                 src={skill.logo}
                 alt={skill.name}
-                className="w-16 h-16 object-contain shadow-lg rounded-full"
+                className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 object-contain shadow-lg rounded-full"
                 whileHover={{ scale: 1.1 }}
               />
             ))}
@@ -320,17 +315,17 @@ export default function Portfolio() {
             transition: { duration: 0.8, staggerChildren: 0.2 },
           },
         }}
-        className="relative flex flex-col items-center justify-start bg-white px-8 py-12"
+        className="relative flex flex-col items-center justify-start bg-white px-4 sm:px-6 lg:px-8 py-12"
       >
-        <h2 className="text-6xl md:text-8xl font-bold mb-20 italic text-center text-gray-900">
+        <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-16 sm:mb-20 italic text-center text-gray-900">
           Skills
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-10 w-full max-w-6xl px-4">
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-10 w-full max-w-7xl">
           {skills.map((skill, index) => (
             <motion.div
               key={index}
-              className="w-[250px] h-[350px] rounded-2xl text-black bg-white shadow-md transition duration-500 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.75)]"
+              className="w-[80%] sm:w-[220px] md:w-[240px] lg:w-[250px] h-[320px] sm:h-[340px] lg:h-[350px] rounded-2xl text-black bg-white shadow-md transition duration-500 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.75)]"
               initial={{ rotateY: 180, backgroundColor: "#000000", opacity: 0 }}
               whileInView={{
                 rotateY: 0,
@@ -344,26 +339,25 @@ export default function Portfolio() {
               viewport={{ once: true, amount: 0.5 }}
               style={{ backfaceVisibility: "hidden" }}
             >
-              <div className="flex flex-col items-center justify-center h-full space-y-6">
+              <div className="flex flex-col items-center justify-center h-full space-y-6 px-4 text-center">
                 <img
                   src={skill.logo}
                   alt={skill.name}
-                  className="w-24 h-24 object-contain"
+                  className="w-20 h-20 sm:w-24 sm:h-24 object-contain"
                 />
-                <span className="text-2xl font-semibold text-center w-full break-words">
+                <span className="text-xl sm:text-2xl font-semibold break-words">
                   {skill.name}
                 </span>
               </div>
             </motion.div>
-
           ))}
         </div>
       </motion.div>
 
       {/* Section Divider */}
-      <section className="h-[15vh] flex flex-col items-center justify-center bg-gray-100 px-8 mt-20">
+      <section className="h-[15vh] flex flex-col items-center justify-center bg-gray-100 px-4 sm:px-8 mt-20">
         <motion.p
-          className="text-8xl font-semibold text-black font-poppins italic"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-black font-poppins italic text-center"
           animate={{ y: [0, -10, 0] }}
           transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
         >
@@ -371,10 +365,9 @@ export default function Portfolio() {
         </motion.p>
       </section>
 
-
       {/* Past Projects Section */}
       <section id="skills"></section>
-      <section className="min-h-screen flex flex-col items-center justify-center bg-white px-8 py-20 relative">
+      <section className="min-h-screen flex flex-col items-center justify-center bg-white px-4 sm:px-6 lg:px-8 py-20 relative">
         <motion.div
           id="projects-section"
           ref={projectsAnim?.ref}
@@ -384,7 +377,7 @@ export default function Portfolio() {
             hidden: { opacity: 0, scale: 0.9 },
             visible: { opacity: 1, scale: 1, transition: { duration: 1 } }
           }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full max-w-7xl"
         >
           {Array.isArray(projects) &&
             projects.length > 0 &&
@@ -394,7 +387,7 @@ export default function Portfolio() {
               return (
                 <motion.div
                   key={project.id}
-                  className="flex flex-col items-center max-w-[750px] w-full"
+                  className="flex flex-col items-center w-full max-w-[700px] mx-auto"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{
                     opacity: 1,
@@ -407,7 +400,7 @@ export default function Portfolio() {
                     <motion.img
                       src={project.images[currentImageIndex]}
                       alt={project.title}
-                      className="w-full h-[400px] object-cover shadow-lg rounded-lg transition-transform duration-300"
+                      className="w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] object-cover shadow-lg rounded-lg transition-transform duration-300"
                       key={currentImageIndex}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{
@@ -431,7 +424,7 @@ export default function Portfolio() {
                           className="absolute top-1/2 left-2 transform -translate-y-1/2 transition-all duration-300 hover:scale-110"
                         >
                           <ChevronLeft
-                            size={40}
+                            size={32}
                             className="text-white drop-shadow-lg"
                           />
                         </button>
@@ -441,7 +434,7 @@ export default function Portfolio() {
                           className="absolute top-1/2 right-2 transform -translate-y-1/2 transition-all duration-300 hover:scale-110"
                         >
                           <ChevronRight
-                            size={40}
+                            size={32}
                             className="text-white drop-shadow-lg"
                           />
                         </button>
@@ -451,43 +444,27 @@ export default function Portfolio() {
 
                   {/* Project Info */}
                   <div className="mt-6 w-full flex flex-col items-start px-2">
-                    <h3 className="text-3xl font-semibold font-poppins italic text-gray-900">
+                    <h3 className="text-2xl sm:text-3xl font-semibold font-poppins italic text-gray-900">
                       {project.title || "Untitled Project"}
                     </h3>
-                    <p className="text-black mt-3 text-lg max-w-[700px]">
+                    <p className="text-black mt-3 text-base sm:text-lg max-w-full">
                       {project.description || "No description available."}
                     </p>
 
-                    <div className="w-full flex justify-between items-center mt-5">
-                      {/* Icons on the left */}
-                      <div className="flex items-center gap-4 mt-2">
+                    <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center mt-5 gap-4">
+                      {/* Icons */}
+                      <div className="flex items-center flex-wrap gap-3 mt-2">
                         {project.technologies?.includes("Godot") && (
-                          <img
-                            src="/godot.png"
-                            alt="Godot"
-                            className="w-8 h-8"
-                          />
+                          <img src="/godot.png" alt="Godot" className="w-8 h-8" />
                         )}
                         {project.technologies?.includes("Aseprite") && (
-                          <img
-                            src="/aseprite.png"
-                            alt="Aseprite"
-                            className="w-8 h-8"
-                          />
+                          <img src="/aseprite.png" alt="Aseprite" className="w-8 h-8" />
                         )}
                         {project.technologies?.includes("Nextjs") && (
-                          <img
-                            src="/nextjs.png"
-                            alt="Nextjs"
-                            className="w-8 h-8"
-                          />
+                          <img src="/nextjs.png" alt="Nextjs" className="w-8 h-8" />
                         )}
                         {project.technologies?.includes("Nodejs") && (
-                          <img
-                            src="/nodejs.png"
-                            alt="Nodejs"
-                            className="w-8 h-8"
-                          />
+                          <img src="/nodejs.png" alt="Nodejs" className="w-8 h-8" />
                         )}
                         {project.technologies?.includes("Typescript") && (
                           <img src="/ts.png" alt="Typescript" className="w-8 h-8" />
@@ -522,45 +499,38 @@ export default function Portfolio() {
       {/* Contact Section */}
       <section
         id="contact-section"
-        className="w-full bg-gray-100 py-44 px-8 flex justify-center items-center"
+        className="w-full bg-gray-100 py-24 sm:py-32 px-4 sm:px-6 lg:px-12 flex justify-center items-center"
       >
-        <div className="w-full max-w-7xl flex flex-col lg:flex-row items-stretch justify-between gap-12">
+        <div className="w-full max-w-7xl flex flex-col lg:flex-row items-stretch justify-between gap-20">
           {/* Contact Form */}
           <div className="flex-1">
-            <h2 className="text-5xl font-bold font-poppins italic mb-6 text-gray-900">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-poppins italic mb-6 text-gray-900">
               Contact
             </h2>
 
-            <p className="text-lg text-gray-700 max-w-md mb-8">
+            <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-xl mb-10 leading-relaxed">
               Feel free to reach out if you have any questions, project ideas, job offers, or just want to connect!
             </p>
 
-            <form className="w-full max-w-md space-y-6">
-
+            <form className="w-full max-w-xl space-y-6">
               {/* Name Field */}
               <div className="relative">
                 <input
                   type="text"
                   id="name"
                   placeholder=" "
-                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-0 transition-all duration-200 ease-in-out"
+                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out"
                   required
                 />
                 <label
-                  htmlFor="email"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
-    peer-placeholder-shown:top-1/2 
-    peer-placeholder-shown:text-sm 
-    peer-focus:top-0 
-    peer-focus:translate-y-0 
-    peer-focus:text-xs 
-    peer-[&:not(:placeholder-shown)]:top-0 
-    peer-[&:not(:placeholder-shown)]:translate-y-0 
-    peer-[&:not(:placeholder-shown)]:text-xs"
+                  htmlFor="name"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
+              peer-placeholder-shown:top-1/2 
+              peer-focus:top-0 peer-focus:translate-y-0 peer-focus:text-xs 
+              peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-xs"
                 >
                   Your Name
                 </label>
-
               </div>
 
               {/* Email Field */}
@@ -569,24 +539,18 @@ export default function Portfolio() {
                   type="email"
                   id="email"
                   placeholder=" "
-                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-0 transition-all duration-200 ease-in-out"
+                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out"
                   required
                 />
                 <label
                   htmlFor="email"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
-    peer-placeholder-shown:top-1/2 
-    peer-placeholder-shown:text-sm 
-    peer-focus:top-0 
-    peer-focus:translate-y-0 
-    peer-focus:text-xs 
-    peer-[&:not(:placeholder-shown)]:top-0 
-    peer-[&:not(:placeholder-shown)]:translate-y-0 
-    peer-[&:not(:placeholder-shown)]:text-xs"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
+              peer-placeholder-shown:top-1/2 
+              peer-focus:top-0 peer-focus:translate-y-0 peer-focus:text-xs 
+              peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-xs"
                 >
                   Your Email
                 </label>
-
               </div>
 
               {/* Message Field */}
@@ -595,46 +559,40 @@ export default function Portfolio() {
                   id="message"
                   rows={5}
                   placeholder=" "
-                  className="peer w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-0 transition-all duration-200 ease-in-out"
+                  className="peer w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out resize-none"
                   required
                 />
                 <label
-                  htmlFor="email"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
-    peer-placeholder-shown:top-1/2 
-    peer-placeholder-shown:text-sm 
-    peer-focus:top-0 
-    peer-focus:translate-y-0 
-    peer-focus:text-xs 
-    peer-[&:not(:placeholder-shown)]:top-0 
-    peer-[&:not(:placeholder-shown)]:translate-y-0 
-    peer-[&:not(:placeholder-shown)]:text-xs"
+                  htmlFor="message"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
+              peer-placeholder-shown:top-1/2 
+              peer-focus:top-0 peer-focus:translate-y-0 peer-focus:text-xs 
+              peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-xs"
                 >
                   Your Message
                 </label>
-
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition duration-300 flex items-center gap-2"
+                className="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition duration-300 flex items-center justify-center gap-2 w-full sm:w-fit"
               >
                 Send Message
                 <TbArrowUpRight className="w-5 h-5" />
               </button>
-
             </form>
           </div>
 
-          <div className="hidden lg:block w-0.5 bg-gray-400 mx-7"></div>
+          {/* Divider for large screens */}
+          <div className="hidden lg:block w-0.5 bg-gray-400 mx-4"></div>
 
-          {/* Resume Download Section */}
-          <div className="flex-1 flex justify-center lg:justify-end w-full">
+          {/* Resume Download */}
+          <div className="flex-1 flex flex-col items-center lg:items-end justify-center w-full">
             <a
               href="/RESUME.pdf"
               download
-              className="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition duration-300 self-start lg:self-center"
+              className="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition duration-300 w-full sm:w-fit text-center"
             >
               Download Resume
             </a>
@@ -643,14 +601,14 @@ export default function Portfolio() {
       </section>
 
       {/* Social Links */}
-      <div className="fixed bottom-20 right-6 flex flex-row items-center space-x-4 z-50">
+      <div className="fixed bottom-17 right-9 sm:bottom-18 sm:right-8 flex flex-row items-center space-x-3 sm:space-x-4 z-50">
         <a
           href="https://github.com/roserossssss"
           target="_blank"
           rel="noopener noreferrer"
           className="text-black hover:text-blue-500 transition duration-300"
         >
-          <Github size={28} />
+          <Github size={24} className="sm:size-[28px]" />
         </a>
         <a
           href="https://www.linkedin.com/in/althea-rose-sardaña-335b60297"
@@ -658,27 +616,30 @@ export default function Portfolio() {
           rel="noopener noreferrer"
           className="text-black hover:text-blue-500 transition duration-300"
         >
-          <Linkedin size={28} />
+          <Linkedin size={24} className="sm:size-[28px]" />
         </a>
         <a
           href="https://mail.google.com/mail/?view=cm&fs=1&to=queeniesardana95@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-black hover:text-blue-500 transition duration-300"
         >
-          <Mail size={28} />
+          <Mail size={24} className="sm:size-[28px]" />
         </a>
       </div>
 
       {/* Footer Section */}
-      <footer className="fixed bottom-0 left-0 w-full h-16 bg-black py-6 flex items-center justify-between px-10 z-50">
-        <div className="w-1/3"></div>
+      <footer className="fixed bottom-0 left-0 w-full h-16 bg-black py-6 px-6 sm:px-10 flex items-center justify-between z-50">
+        <div className="hidden sm:block w-1/3"></div>
 
-        <div className="relative flex flex-col items-center">
+        {/* Dropdown and Arrow aligned to the right */}
+        <div className="relative flex flex-col items-end ml-auto pr-4 sm:pr-0">
           {/* Dropdown Menu */}
           <div
-            className={`absolute bottom-16 mb-2 w-40 bg-white rounded-lg shadow-lg py-2 text-sm font-medium text-black
-    transition-all duration-300 ease-out transform origin-top
-    ${dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
-  `}
+            className={`absolute bottom-16 mb-2 w-36 sm:w-40 bg-white rounded-lg shadow-lg py-2 text-sm font-medium text-black
+      transition-all duration-300 ease-out transform origin-top
+      ${dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
+    `}
           >
             <button
               onClick={() => {
@@ -720,13 +681,16 @@ export default function Portfolio() {
 
           {/* Arrow Button */}
           <button
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-black hover:bg-gray-300 transition duration-300"
+            className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white text-black hover:bg-gray-300 transition duration-300"
             onClick={() => setDropdownOpen(!dropdownOpen)}
           >
-            {dropdownOpen ? <ArrowDown size={24} /> : <ArrowUp size={24} />}
+            {dropdownOpen ? <ArrowDown size={20} className="sm:size-[24px]" /> : <ArrowUp size={20} className="sm:size-[24px]" />}
           </button>
         </div>
       </footer>
+
+
+
     </div>
   );
 }
