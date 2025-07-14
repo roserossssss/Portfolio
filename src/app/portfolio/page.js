@@ -590,7 +590,7 @@ export default function Portfolio() {
           {/* Resume Download */}
           <div className="flex-1 flex flex-col items-center lg:items-end justify-center w-full">
             <a
-              href="/RESUME.pdf"
+              href="/SARDANA, ALTHEA ROSE_RESUME.pdf"
               download
               className="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition duration-300 w-full sm:w-fit text-center"
             >
