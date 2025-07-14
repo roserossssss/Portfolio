@@ -155,7 +155,7 @@ export default function Portfolio() {
             transition={{ duration: 1 }}
           >
             <img
-              src="/me.jpg"
+              src="/PORTFOLIO PIC.jpg"
               alt="photo"
               className="w-full h-full object-cover"
             />
