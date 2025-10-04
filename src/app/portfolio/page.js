@@ -57,8 +57,9 @@ export default function Portfolio() {
   // Education Data
   const education = [
     {
-      year: "2021 - Present",
+      year: "2021 - 2025",
       institution: "Polytechnic University of the Philippines",
+      latin: "Magna Cum Laude",
       degree: "Bachelor of Science in Information Technology",
     },
     {
@@ -239,6 +240,7 @@ export default function Portfolio() {
               <div className="pl-4">
                 <h3 className="text-xl sm:text-xl font-semibold">{edu.institution}</h3>
                 <p className="text-gray-700 text-sm lg:text-lg">{edu.degree}</p>
+                 <h3 className="text-gray-700 text-sm lg:text-lg font-semibold italic">{edu.latin}</h3>
                 <span className="text-gray-500 text-sm">{edu.year}</span>
               </div>
             </div>
@@ -590,7 +592,7 @@ export default function Portfolio() {
           {/* Resume Download */}
           <div className="flex-1 flex flex-col items-center lg:items-end justify-center w-full">
             <a
-              href="/SARDANA, ALTHEA ROSE_RESUME.pdf"
+              href="/SARDAÑA, ALTHEA ROSE_RESUME.pdf"
               download
               className="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition duration-300 w-full sm:w-fit text-center"
             >
