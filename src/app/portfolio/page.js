@@ -39,20 +39,24 @@ export default function Portfolio() {
   const projectsAnim = useScrollAnimation();
 
   // Technical Skills Logos Data
-  const techSkills = [
-    { logo: "python.png", name: "Python" },
-    { logo: "java.png", name: "Java" },
-    { logo: "c++.png", name: "C++" },
-    { logo: "c-sharp.png", name: "C#" },
-    { logo: "nextjs.png", name: "Nextjs" },
-    { logo: "html.png", name: "HTML" },
-    { logo: "ts.png", name: "Typescript" },
-    { logo: "jslogo.png", name: "Javascript" },
-    { logo: "nodejs.png", name: "Nodejs" },
-    { logo: "mysql.png", name: "MySQL" },
-    { logo: "aseprite.png", name: "Aseprite" },
-    { logo: "virtualbox.png", name: "Virtualbox" },
-  ];
+  const frontendSkills = [
+  "HTML",
+  "JavaScript",
+  "TypeScript",
+  "Next.js",
+  "React",
+  "Tailwind CSS",
+];
+
+const backendSkills = [
+  "Node.js",
+  "Python",
+  "Java",
+  "C++",
+  "C#",
+  "MySQL",
+];
+
 
   // Education Data
   const education = [
@@ -79,7 +83,7 @@ export default function Portfolio() {
     {
       company: "Lamina Studios",
       role: "Front-End Developer Intern",
-      duration: "March 2025 – June 2024",
+      duration: "March 2025 – June 2025",
       description:
         "Developed and maintained the UI for a responsive dive booking platform using React. Collaborated with back-end developers and designers to optimize the user experience and interface consistency."
     }
@@ -137,470 +141,544 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-gray-100 text-black">
       {/* Header */}
       <div className="w-full bg-black text-white py-4 px-6 fixed top-0 left-0 z-50 shadow-md">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif italic">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif">
           Portfolio
         </h1>
       </div>
 
       {/* Main Section */}
-      <section id="landing" className="pt-32 px-4 sm:px-6 md:px-8">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-10 min-h-[90vh]">
-          {/* Image on top for sm/md, left for lg+ */}
-          <motion.div
-            className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px] aspect-[2/3] shadow-xl shadow-black/50 rounded-lg overflow-hidden"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <img
-              src="/PORTFOLIO PIC.jpg"
-              alt="photo"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+<section id="landing" className="pt-32 px-4 sm:px-6">
+  <div className="max-w-5xl mx-auto">
+    <motion.div
+      className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+     {/* Avatar */}
+<motion.div
+  className="w-[120px] h-[120px] sm:w-[160px] sm:h-[160px]
+             aspect-square rounded-md overflow-hidden shadow-md"
+  initial={{ scale: 0.9, opacity: 0 }}
+  animate={{ scale: 1, opacity: 1 }}
+  transition={{ duration: 0.6 }}
+>
+  <img
+    src="/PORTFOLIO PIC.jpg"
+    alt="Althea Rose Sardana"
+    className="w-full h-full object-cover"
+  />
+</motion.div>
 
-          {/* Text below image for sm/md, right of image for lg+ */}
-          <motion.div
-            className="text-center lg:text-left w-full max-w-xl sm:max-w-2xl px-2 sm:px-4"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-poppins italic whitespace-nowrap">
-              Althea Rose S. Sardana
-            </h2>
 
-            <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-gray-800 mt-3">
-              <Typewriter
-                words={['Front End Developer', 'Graphic Artist']}
-                loop={true}
-                cursor
-                cursorStyle="_"
-                typeSpeed={120}
-                deleteSpeed={90}
-                delaySpeed={1200}
-              />
-            </h3>
+      {/* Info */}
+      <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2 flex-1">
+        {/* Name */}
+        <h1 className="text-2xl sm:text-3xl font-bold font-poppins">
+          Althea Rose S. Sardana
+        </h1>
 
-            <hr className="border-t mt-6 border-black w-full" />
+        {/* Location */}
+        <p className="text-sm text-gray-500">
+          Pasig CIty, Philippines
+        </p>
 
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 text-xs sm:text-sm md:text-base mt-4">
-              <button
-                className="hover:italic"
-                onClick={() => document.getElementById("about-section")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                About Me
-              </button>
-              <span>|</span>
-              <button
-                className="hover:italic"
-                onClick={() => document.getElementById("skills-section")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                Skills
-              </button>
-              <span>|</span>
-              <button
-                className="hover:italic"
-                onClick={() => document.getElementById("projects-section")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                Past Projects
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+        {/* Roles */}
+        <p className="text-xs sm:text-base text-gray-700">
+          <Typewriter
+            words={['Front End Developer', 'Graphic Artist']}
+            loop
+            cursor
+            cursorStyle="_"
+            typeSpeed={120}
+            deleteSpeed={90}
+            delaySpeed={1200}
+          />
+        </p>
 
-      <section id="about"></section>
-      <div className="min-h-[80vh] flex flex-col lg:flex-row items-center justify-center bg-gray-100 px-6 sm:px-9 gap-12">
-        {/* About Me & Education Section */}
-        <motion.div
-          id="about-section"
-          ref={aboutMeAnim.ref}
-          initial="hidden"
-          animate={aboutMeAnim.controls}
-          variants={{
-            hidden: { opacity: 0, x: -50 },
-            visible: { opacity: 1, x: 0, transition: { duration: 1 } }
-          }}
-          className="w-full lg:w-1/2"
-        >
-          <h2 className="text-4xl sm:text-6xl lg:text-8xl font-bold mt-7 font-oppins italic">About Me</h2>
-          <p className="text-base sm:text-sm py-3 font-poppins">
-            An entry-level IT talent eager to build with purpose, learn with curiosity, and grow with every opportunity.
-          </p>
+        {/* Action Buttons */}
+<div className="flex flex-wrap justify-center sm:justify-start gap-3 mt-4">
+  {/* Send Message */}
+  <button
+    onClick={() =>
+      document
+        .getElementById("contact-section")
+        ?.scrollIntoView({ behavior: "smooth" })
+    }
+    className="px-4 py-2 bg-black text-white rounded-lg text-sm
+               hover:bg-gray-800 transition flex items-center gap-2"
+  >
+    Send Message
+  </button>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Educational History</h2>
-          {education.map((edu, index) => (
-            <div key={edu.id} className="relative pl-8 mb-4">
-              <div className="absolute left-6 top-0 h-full w-1 bg-black"></div>
-              <div className="absolute left-5 top-2 w-3 h-3 bg-black rounded-full"></div>
-              <div className="pl-4">
-                <h3 className="text-xl sm:text-xl font-semibold">{edu.institution}</h3>
-                <p className="text-gray-700 text-sm lg:text-lg">{edu.degree}</p>
-                 <h3 className="text-gray-700 text-sm lg:text-lg font-semibold italic">{edu.latin}</h3>
-                <span className="text-gray-500 text-sm">{edu.year}</span>
-              </div>
-            </div>
-          ))}
+  {/* Download Resume */}
+  <a
+    href="/SARDAÑA, ALTHEA ROSE_RESUME.pdf"
+    download
+    className="px-4 py-2 border border-black rounded-lg text-sm
+               hover:bg-gray-100 transition flex items-center gap-2"
+  >
+    Download Resume
+  </a>
+</div>
 
-          {/* Work Experience Section */}
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-5 mt-12">Work Experience</h2>
-          {workExperience.map((work, index) => (
-            <div key={index} className="relative pl-8 mb-6">
-              <div className="absolute left-6 top-0 h-full w-1 bg-black"></div>
-              <div className="absolute left-5 top-2 w-3 h-3 bg-black rounded-full"></div>
-              <div className="pl-4">
-                <h3 className="text-xl sm:text-2xl font-semibold">{work.company}</h3>
-                <p className="text-gray-700 text-sm lg:text-lg">{work.role}</p>
-                <span className="text-gray-500 text-sm">{work.duration}</span>
-                <p className="text-sm sm:text-md text-gray-600 mt-1">{work.description}</p>
-              </div>
-            </div>
-          ))}
-        </motion.div>
+      </div>
+    </motion.div>
+  </div>
+</section>
 
-        <motion.div
-          ref={skillsAnim.ref}
-          initial="hidden"
-          animate={skillsAnim.controls}
-          variants={{
-            hidden: { opacity: 0, x: 50 },
-            visible: { opacity: 1, x: 0, transition: { duration: 1 } }
-          }}
-          className="w-full lg:w-1/2 flex flex-col gap-6"
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-poppins italic w-full text-center mb-1 -mt-2">
-            Technical Skills
-          </h2>
 
-          <div className="flex justify-center flex-wrap gap-x-6 gap-y-4">
-            {techSkills.slice(0, 7).map((skill, index) => (
-              <motion.img
-                key={index}
-                src={skill.logo}
-                alt={skill.name}
-                className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 object-contain shadow-lg rounded-full"
-                whileHover={{ scale: 1.1 }}
-              />
-            ))}
-          </div>
 
-          <div className="flex justify-center flex-wrap gap-x-6 gap-y-4">
-            {techSkills.slice(7).map((skill, index) => (
-              <motion.img
-                key={index + 7}
-                src={skill.logo}
-                alt={skill.name}
-                className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 object-contain shadow-lg rounded-full"
-                whileHover={{ scale: 1.1 }}
-              />
-            ))}
-          </div>
-        </motion.div>
+      <section id="about-section" className="bg-gray-100 py-20 px-4 sm:px-6">
+  <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+    {/* LEFT COLUMN — ABOUT + SKILLS */}
+    <motion.div
+      ref={skillsAnim.ref}
+      initial="hidden"
+      animate={skillsAnim.controls}
+      variants={{
+        hidden: { opacity: 0, x: -30 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+      }}
+      className="flex flex-col gap-10"
+    >
+      {/* ABOUT ME */}
+      <div className="bg-transparent border border-gray-300 rounded-xl p-6 -mt-10 shadow-md hover:shadow-lg transition
+">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+          About Me
+        </h2>
+        <p className="text-gray-700 text-sm sm:text-lg lg:text-sm leading-relaxed">
+          I am a passionate and detail-oriented developer with a strong interest
+          in building clean, responsive, and user-friendly applications.
+          I enjoy learning new technologies, solving real-world problems,
+          and continuously improving my skills through hands-on projects
+          and collaboration.
+        </p>
+
+         <p className="text-gray-700 text-sm sm:text-lg lg:text-sm leading-relaxed mt-4">
+    I also enjoy working in collaborative environments where ideas are
+    shared openly, and I am always eager to improve my problem-solving
+    skills by building real-world projects and exploring new tools
+    and frameworksdsadadadsadasdsadsadsa.
+  </p>
       </div>
 
-      {/* Skills Section */}
-      <section id="skills"></section>
-      <motion.div
-        id="skills-section"
-        ref={skillCardsAnim.ref}
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0, y: 50 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.8, staggerChildren: 0.2 },
-          },
-        }}
-        className="relative flex flex-col items-center justify-start bg-white px-4 sm:px-6 lg:px-8 py-12"
-      >
-        <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-16 sm:mb-20 italic text-center text-gray-900">
-          Skills
+
+      {/* TECH STACK */}
+<div className="bg-transparent border border-gray-300 rounded-xl p-6 -mt-5 shadow-md hover:shadow-lg transition">
+  <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+    Technical Skills
+  </h2>
+
+  <div className="flex flex-col gap-8">
+    {/* FRONTEND */}
+    <div>
+      <h3 className="text-sm sm:text-lg lg:text-base font-semibold -mt-2 mb-2">
+        Frontend
+      </h3>
+      <div className="flex justify-center flex-wrap gap-3">
+        {frontendSkills.map((skill, index) => (
+          <span
+            key={index}
+            className="px-2 py-2 text-sm sm:text-lg lg:text-sm
+                       border border-gray-300 rounded-lg
+                       text-gray-700 bg-gray-100 shadow-sm
+                       hover:bg-gray-100 transition"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    {/* BACKEND */}
+    <div>
+      <h3 className="text-sm sm:text-lg lg:text-base font-semibold -mt-2 mb-2">
+        Backend
+      </h3>
+      <div className="flex justify-center flex-wrap gap-3">
+        {backendSkills.map((skill, index) => (
+          <span
+            key={index}
+            className="px-2 py-2 text-sm sm:text-lg lg:text-sm
+                       border border-gray-300 rounded-lg
+                       text-gray-700 bg-gray-100 shadow-sm
+                       hover:bg-gray-100 transition"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+    </motion.div>
+
+    {/* RIGHT COLUMN — EDUCATION + WORK */}
+    <motion.div
+      ref={aboutMeAnim.ref}
+      initial="hidden"
+      animate={aboutMeAnim.controls}
+      variants={{
+        hidden: { opacity: 0, x: 30 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+      }}
+      className="flex flex-col gap-10"
+    >
+      {/* EDUCATION */}
+      <div className="bg-transparent border border-gray-300 rounded-xl -mt-10 p-6 shadow-md hover:shadow-lg transition
+">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+          Educational History
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-10 w-full max-w-7xl">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              className="w-[80%] sm:w-[220px] md:w-[240px] lg:w-[250px] h-[320px] sm:h-[340px] lg:h-[350px] rounded-2xl text-black bg-white shadow-md transition duration-500 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.75)]"
-              initial={{ rotateY: 180, backgroundColor: "#000000", opacity: 0 }}
-              whileInView={{
-                rotateY: 0,
-                backgroundColor: "#ffffff",
-                opacity: 1,
-                transition: {
-                  duration: 0.8,
-                  delay: index * 0.2,
-                },
-              }}
-              viewport={{ once: true, amount: 0.5 }}
-              style={{ backfaceVisibility: "hidden" }}
-            >
-              <div className="flex flex-col items-center justify-center h-full space-y-6 px-4 text-center">
-                <img
-                  src={skill.logo}
-                  alt={skill.name}
-                  className="w-20 h-20 sm:w-24 sm:h-24 object-contain"
-                />
-                <span className="text-xl sm:text-2xl font-semibold break-words">
-                  {skill.name}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+        {education.map((edu) => (
+          <div key={edu.id} className="relative pl-6 mb-5">
+            <div className="absolute left-2 top-0 h-full w-[2px] bg-black/70" />
+            <div className="absolute left-1 top-2 w-2 h-2 bg-black rounded-full" />
 
-      {/* Section Divider */}
-      <section className="h-[15vh] flex flex-col items-center justify-center bg-gray-100 px-4 sm:px-8 mt-20">
-        <motion.p
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-black font-poppins italic text-center"
-          animate={{ y: [0, -10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+            <div className="pl-4">
+              <h3 className="text-base sm:text-lg font-semibold">
+                {edu.institution}
+              </h3>
+              <p className="text-gray-700 text-sm">
+                {edu.degree}
+              </p>
+              <p className="text-gray-600 text-xs italic font-medium">
+                {edu.latin}
+              </p>
+              <span className="text-gray-500 text-xs">
+                {edu.year}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* WORK EXPERIENCE */}
+      <div className="bg-transparent border border-gray-300 rounded-xl -mt-5 p-6 shadow-md hover:shadow-lg transition
+">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+          Work Experience
+        </h2>
+
+        {workExperience.map((work, index) => (
+          <div key={index} className="relative pl-6 mb-6">
+            <div className="absolute left-2 top-0 h-full w-[2px] bg-black/70" />
+            <div className="absolute left-1 top-2 w-2 h-2 bg-black rounded-full" />
+
+            <div className="pl-4">
+              <h3 className="text-base sm:text-lg font-semibold">
+                {work.company}
+              </h3>
+              <p className="text-gray-700 text-sm">
+                {work.role}
+              </p>
+              <span className="text-gray-500 text-xs">
+                {work.duration}
+              </span>
+              <p className="text-xs text-gray-600 mt-1">
+                {work.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+
+  </div>
+</section>
+
+
+     {/* Skills Section */}
+<section id="skills-section" className="bg-gray-100 py-5 -mt-10 px-4 sm:px-6">
+  <motion.div
+    ref={skillCardsAnim.ref}
+    initial="hidden"
+    animate="visible"
+    variants={{
+      hidden: { opacity: 0, y: 30 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, staggerChildren: 0.15 },
+      },
+    }}
+    className="max-w-2xl mx-auto flex flex-col items-center"
+  >
+    {/* Title */}
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 text-center">
+      Skills
+    </h2>
+
+    {/* Cards */}
+    <div className="flex flex-wrap justify-center gap-6 w-full">
+      {skills.map((skill, index) => (
+        <motion.div
+          key={index}
+          className="w-[160px] sm:w-[180px] h-[220px]
+                     rounded-xl bg-white text-black shadow
+                     transition-transform duration-300
+                     hover:scale-105 hover:shadow-lg"
+          initial={{ rotateY: 90, opacity: 0 }}
+          whileInView={{
+            rotateY: 0,
+            opacity: 1,
+            transition: { duration: 0.6, delay: index * 0.1 },
+          }}
+          viewport={{ once: true }}
+          style={{ backfaceVisibility: "hidden" }}
         >
-          Recent Projects
-        </motion.p>
-      </section>
+          <div className="flex flex-col items-center justify-center h-full gap-4 px-4 text-center">
+            <img
+              src={skill.logo}
+              alt={skill.name}
+              className="w-14 h-14 sm:w-16 sm:h-16 object-contain"
+            />
+            <span className="text-sm sm:text-base font-semibold">
+              {skill.name}
+            </span>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </motion.div>
+</section>
+
+
+      <section className="py-16 bg-gray-100 flex items-center justify-center px-4">
+  <motion.p
+    className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center"
+  >
+    Recent Projects
+  </motion.p>
+</section>
+
 
       {/* Past Projects Section */}
-      <section id="skills"></section>
-      <section className="min-h-screen flex flex-col items-center justify-center bg-white px-4 sm:px-6 lg:px-8 py-20 relative">
+      <section
+  id="projects-section"
+  className="bg-gray-100 py-20 px-4 sm:px-6"
+>
+  <motion.div
+    ref={projectsAnim?.ref}
+    initial="hidden"
+    animate={projectsAnim?.controls}
+    variants={{
+      hidden: { opacity: 0, scale: 0.95 },
+      visible: { opacity: 1, scale: 1, transition: { duration: 0.8 } }
+    }}
+    className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12"
+  >
+    {projects.map((project, index) => {
+      const currentImageIndex = imageIndices[index]
+
+      return (
         <motion.div
-          id="projects-section"
-          ref={projectsAnim?.ref}
-          initial="hidden"
-          animate={projectsAnim?.controls}
-          variants={{
-            hidden: { opacity: 0, scale: 0.9 },
-            visible: { opacity: 1, scale: 1, transition: { duration: 1 } }
-          }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full max-w-7xl"
+          key={project.id}
+          className="flex flex-col items-center w-full py-1 -mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.15 }}
         >
-          {Array.isArray(projects) &&
-            projects.length > 0 &&
-            projects.map((project, index) => {
-              const currentImageIndex = imageIndices[index];
+          {/* Image */}
+          <motion.img
+            src={project.images[currentImageIndex]}
+            alt={project.title}
+            className="w-full h-[220px] sm:h-[260px] md:h-[300px]
+                       object-cover rounded-lg shadow"
+            whileHover={{ scale: 0.97 }}
+          />
 
-              return (
-                <motion.div
-                  key={project.id}
-                  className="flex flex-col items-center w-full max-w-[700px] mx-auto"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    transition: { duration: 0.8, delay: index * 0.2 }
-                  }}
-                >
-                  {/* Project Image */}
-                  <div className="relative w-full">
-                    <motion.img
-                      src={project.images[currentImageIndex]}
-                      alt={project.title}
-                      className="w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] object-cover shadow-lg rounded-lg transition-transform duration-300"
-                      key={currentImageIndex}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{
-                        opacity: 1,
-                        x: 0,
-                        transition: { duration: 0.5 }
-                      }}
-                      exit={{ opacity: 0, x: 20 }}
-                      whileHover={{
-                        scaleY: 0.95,
-                        scaleX: 0.95,
-                        transformOrigin: "bottom",
-                        transition: { duration: 0.3, ease: "easeOut" }
-                      }}
-                    />
+          {/* Info */}
+          <div className="mt-5 w-full px-1">
+            <h3 className="text-lg sm:text-xl font-semibold">
+              {project.title}
+            </h3>
 
-                    {project.images.length > 1 && (
-                      <>
-                        <button
-                          onClick={() => prevImage(index)}
-                          className="absolute top-1/2 left-2 transform -translate-y-1/2 transition-all duration-300 hover:scale-110"
-                        >
-                          <ChevronLeft
-                            size={32}
-                            className="text-white drop-shadow-lg"
-                          />
-                        </button>
+            <p className="text-sm sm:text-lg lg:text-sm text-gray-700 mt-2">
+              {project.description}
+            </p>
 
-                        <button
-                          onClick={() => nextImage(index)}
-                          className="absolute top-1/2 right-2 transform -translate-y-1/2 transition-all duration-300 hover:scale-110"
-                        >
-                          <ChevronRight
-                            size={32}
-                            className="text-white drop-shadow-lg"
-                          />
-                        </button>
-                      </>
-                    )}
-                  </div>
+            <div className="flex flex-wrap justify-between items-center gap-4 mt-4">
+              <div className="flex gap-3">
+                {project.technologies?.map((tech) => (
+                  <img
+                    key={tech}
+                    src={`/${tech.toLowerCase()}.png`}
+                    alt={tech}
+                    className="w-6 h-6"
+                  />
+                ))}
+              </div>
 
-                  {/* Project Info */}
-                  <div className="mt-6 w-full flex flex-col items-start px-2">
-                    <h3 className="text-2xl sm:text-3xl font-semibold font-poppins italic text-gray-900">
-                      {project.title || "Untitled Project"}
-                    </h3>
-                    <p className="text-black mt-3 text-base sm:text-lg max-w-full">
-                      {project.description || "No description available."}
-                    </p>
+              {project.link && (
+  <a
+    href={project.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 ${
+      project.title?.toLowerCase() === "yapak"
+        ? "hover:bg-green-700"
+        : "hover:bg-blue-900"
+    }`}
+  >
+    <span>View</span>
+    <FiArrowUpRight
+      size={16}
+      className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+    />
+  </a>
+)}
 
-                    <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center mt-5 gap-4">
-                      {/* Icons */}
-                      <div className="flex items-center flex-wrap gap-3 mt-2">
-                        {project.technologies?.includes("Godot") && (
-                          <img src="/godot.png" alt="Godot" className="w-8 h-8" />
-                        )}
-                        {project.technologies?.includes("Aseprite") && (
-                          <img src="/aseprite.png" alt="Aseprite" className="w-8 h-8" />
-                        )}
-                        {project.technologies?.includes("Nextjs") && (
-                          <img src="/nextjs.png" alt="Nextjs" className="w-8 h-8" />
-                        )}
-                        {project.technologies?.includes("Nodejs") && (
-                          <img src="/nodejs.png" alt="Nodejs" className="w-8 h-8" />
-                        )}
-                        {project.technologies?.includes("Typescript") && (
-                          <img src="/ts.png" alt="Typescript" className="w-8 h-8" />
-                        )}
-                      </div>
-
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 ${project.title?.toLowerCase() === "yapak"
-                            ? "hover:bg-green-700"
-                            : "hover:bg-blue-900"
-                            }`}
-                        >
-                          <span>View</span>
-                          <FiArrowUpRight
-                            size={16}
-                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                          />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            </div>
+          </div>
         </motion.div>
-      </section>
+      )
+    })}
+  </motion.div>
+</section>
+
 
       {/* Contact Section */}
       <section
-        id="contact-section"
-        className="w-full bg-gray-100 py-24 sm:py-32 px-4 sm:px-6 lg:px-12 flex justify-center items-center"
-      >
-        <div className="w-full max-w-7xl flex flex-col lg:flex-row items-stretch justify-between gap-20">
-          {/* Contact Form */}
-          <div className="flex-1">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-poppins italic mb-6 text-gray-900">
-              Contact
-            </h2>
+  id="contact-section"
+  className="w-full bg-gray-100 mb-6 -mt-36 py-5 sm:py-28 px-4 sm:px-6"
+>
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+    className="max-w-5xl mx-auto flex flex-col lg:flex-row items-stretch justify-between gap-16"
+  >
+    {/* Contact Form */}
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+      viewport={{ once: true }}
+      className="flex-1"
+    >
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-poppins mb-6 text-gray-900">
+        Contact
+      </h2>
 
-            <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-xl mb-10 leading-relaxed">
-              Feel free to reach out if you have any questions, project ideas, job offers, or just want to connect!
-            </p>
+      <p className="text-sm sm:text-base text-gray-700 max-w-md mb-8 leading-relaxed">
+        Feel free to reach out if you have any questions, project ideas, job offers,
+        or just want to connect!
+      </p>
 
-            <form className="w-full max-w-xl space-y-6">
-              {/* Name Field */}
-              <div className="relative">
-                <input
-                  type="text"
-                  id="name"
-                  placeholder=" "
-                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out"
-                  required
-                />
-                <label
-                  htmlFor="name"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
-              peer-placeholder-shown:top-1/2 
-              peer-focus:top-0 peer-focus:translate-y-0 peer-focus:text-xs 
-              peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-xs"
-                >
-                  Your Name
-                </label>
-              </div>
+      {/* FORM — ANIMATION & FUNCTION INTACT */}
+      <form className="w-full max-w-md space-y-6">
+        {/* Name */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="relative"
+        >
+          <input
+            type="text"
+            id="name"
+            placeholder=" "
+            required
+            className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
+                       placeholder-transparent focus:outline-none focus:ring-2 focus:ring-black"
+          />
+          <label
+            htmlFor="name"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
+                       transition-all duration-200
+                       peer-placeholder-shown:top-1/2
+                       peer-focus:top-0 peer-focus:text-xs
+                       peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-xs"
+          >
+            Your Name
+          </label>
+        </motion.div>
 
-              {/* Email Field */}
-              <div className="relative">
-                <input
-                  type="email"
-                  id="email"
-                  placeholder=" "
-                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out"
-                  required
-                />
-                <label
-                  htmlFor="email"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
-              peer-placeholder-shown:top-1/2 
-              peer-focus:top-0 peer-focus:translate-y-0 peer-focus:text-xs 
-              peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-xs"
-                >
-                  Your Email
-                </label>
-              </div>
+        {/* Email */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="relative"
+        >
+          <input
+            type="email"
+            id="email"
+            placeholder=" "
+            required
+            className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
+                       placeholder-transparent focus:outline-none focus:ring-2 focus:ring-black"
+          />
+          <label
+            htmlFor="email"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
+                       transition-all duration-200
+                       peer-placeholder-shown:top-1/2
+                       peer-focus:top-0 peer-focus:text-xs
+                       peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-xs"
+          >
+            Your Email
+          </label>
+        </motion.div>
 
-              {/* Message Field */}
-              <div className="relative">
-                <textarea
-                  id="message"
-                  rows={5}
-                  placeholder=" "
-                  className="peer w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out resize-none"
-                  required
-                />
-                <label
-                  htmlFor="message"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 -mt-2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1 transition-all duration-200 ease-in-out 
-              peer-placeholder-shown:top-1/2 
-              peer-focus:top-0 peer-focus:translate-y-0 peer-focus:text-xs 
-              peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-xs"
-                >
-                  Your Message
-                </label>
-              </div>
+        {/* Message */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="relative"
+        >
+          <textarea
+            id="message"
+            rows={5}
+            placeholder=" "
+            required
+            className="peer w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
+                       placeholder-transparent focus:outline-none focus:ring-2 focus:ring-black resize-none"
+          />
+          <label
+            htmlFor="message"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
+                       transition-all duration-200
+                       peer-placeholder-shown:top-1/2
+                       peer-focus:top-0 peer-focus:text-xs
+                       peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-xs"
+          >
+            Your Message
+          </label>
+        </motion.div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition duration-300 flex items-center justify-center gap-2 w-full sm:w-fit"
-              >
-                Send Message
-                <TbArrowUpRight className="w-5 h-5" />
-              </button>
-            </form>
-          </div>
+        {/* Submit */}
+        <motion.button
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.97 }}
+          type="submit"
+          className="bg-transparent text-black px-6 py-3 rounded-lg
+           border border-gray-300
+           hover:bg-gray-900 hover:text-white transition flex items-center gap-2"
+        >
+          Send Message
+          <TbArrowUpRight className="w-5 h-5" />
+        </motion.button>
+      </form>
+    </motion.div>
+  </motion.div>
+</section>
 
-          {/* Divider for large screens */}
-          <div className="hidden lg:block w-0.5 bg-gray-400 mx-4"></div>
 
-          {/* Resume Download */}
-          <div className="flex-1 flex flex-col items-center lg:items-end justify-center w-full">
-            <a
-              href="/SARDAÑA, ALTHEA ROSE_RESUME.pdf"
-              download
-              className="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition duration-300 w-full sm:w-fit text-center"
-            >
-              Download Resume
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* Social Links */}
       <div className="fixed bottom-17 right-9 sm:bottom-18 sm:right-7 flex flex-row items-center space-x-3 sm:space-x-4 z-50">
