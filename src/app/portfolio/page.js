@@ -40,22 +40,31 @@ export default function Portfolio() {
 
   // Technical Skills Logos Data
   const frontendSkills = [
-  "HTML",
-  "JavaScript",
-  "TypeScript",
-  "Next.js",
-  "React",
-  "Tailwind CSS",
-];
+    "HTML",
+    "JavaScript",
+    "TypeScript",
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+  ];
 
-const backendSkills = [
-  "Node.js",
-  "Python",
-  "Java",
-  "C++",
-  "C#",
-  "MySQL",
-];
+  const backendSkills = [
+    "Node.js",
+    "Python",
+    "Java",
+    "C++",
+    "C#",
+    "MySQL",
+  ];
+
+  const developerTools = [
+    "Github",
+    "JIRA",
+    "VS Code",
+    "Discord",
+    "Teams",
+    "Aseprite",
+  ];
 
 
   // Education Data
@@ -150,534 +159,539 @@ const backendSkills = [
       </div>
 
       {/* Main Section */}
-<section id="landing" className="pt-32 px-4 sm:px-6">
-  <div className="max-w-5xl mx-auto">
-    <motion.div
-      className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-     {/* Avatar */}
-<motion.div
-  className="w-[120px] h-[120px] sm:w-[160px] sm:h-[160px]
+      <section id="landing" className="pt-32 px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Avatar */}
+            <motion.div
+              className="w-[120px] h-[120px] sm:w-[160px] sm:h-[160px]
              aspect-square rounded-md overflow-hidden shadow-md"
-  initial={{ scale: 0.9, opacity: 0 }}
-  animate={{ scale: 1, opacity: 1 }}
-  transition={{ duration: 0.6 }}
->
-  <img
-    src="/PORTFOLIO PIC.jpg"
-    alt="Althea Rose Sardana"
-    className="w-full h-full object-cover"
-  />
-</motion.div>
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <img
+                src="/PORTFOLIO PIC.jpg"
+                alt="Althea Rose Sardana"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
 
 
-      {/* Info */}
-      <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2 flex-1">
-        {/* Name */}
-        <h1 className="text-2xl sm:text-3xl font-bold font-poppins">
-          Althea Rose S. Sardana
-        </h1>
+            {/* Info */}
+            <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2 flex-1">
+              {/* Name */}
+              <h1 className="text-2xl sm:text-3xl font-bold font-poppins">
+                Althea Rose S. Sardana
+              </h1>
 
-        {/* Location */}
-        <p className="text-sm text-gray-500">
-          Pasig CIty, Philippines
-        </p>
+              {/* Location */}
+              <p className="text-sm text-gray-500">
+                Pasig CIty, Philippines
+              </p>
 
-        {/* Roles */}
-        <p className="text-xs sm:text-base text-gray-700">
-          <Typewriter
-            words={['Front End Developer', 'Graphic Artist']}
-            loop
-            cursor
-            cursorStyle="_"
-            typeSpeed={120}
-            deleteSpeed={90}
-            delaySpeed={1200}
-          />
-        </p>
+              {/* Roles */}
+              <p className="text-xs sm:text-base text-gray-700">
+                <Typewriter
+                  words={['Front End Developer', 'Graphic Artist']}
+                  loop
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={120}
+                  deleteSpeed={90}
+                  delaySpeed={1200}
+                />
+              </p>
 
-        {/* Action Buttons */}
-<div className="flex flex-wrap justify-center sm:justify-start gap-3 mt-4">
-  {/* Send Message */}
-  <button
-    onClick={() =>
-      document
-        .getElementById("contact-section")
-        ?.scrollIntoView({ behavior: "smooth" })
-    }
-    className="px-4 py-2 bg-black text-white rounded-lg text-sm
+              {/* Action Buttons */}
+              <div className="flex flex-wrap justify-center sm:justify-start gap-3 mt-4">
+                {/* Send Message */}
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("contact-section")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="px-4 py-2 bg-black text-white rounded-lg text-sm
                hover:bg-gray-800 transition flex items-center gap-2"
-  >
-    Send Message
-  </button>
+                >
+                  Send Message
+                </button>
 
-  {/* Download Resume */}
-  <a
-    href="/SARDAÑA, ALTHEA ROSE_RESUME.pdf"
-    download
-    className="px-4 py-2 border border-black rounded-lg text-sm
+                {/* Download Resume */}
+                <a
+                  href="/SARDAÑA, ALTHEA ROSE_RESUME.pdf"
+                  download
+                  className="px-4 py-2 border border-black rounded-lg text-sm
                hover:bg-gray-100 transition flex items-center gap-2"
-  >
-    Download Resume
-  </a>
-</div>
+                >
+                  Download Resume
+                </a>
+              </div>
 
-      </div>
-    </motion.div>
-  </div>
-</section>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
 
 
       <section id="about-section" className="bg-gray-100 py-20 px-4 sm:px-6">
-  <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-    {/* LEFT COLUMN — ABOUT + SKILLS */}
-    <motion.div
-      ref={skillsAnim.ref}
-      initial="hidden"
-      animate={skillsAnim.controls}
-      variants={{
-        hidden: { opacity: 0, x: -30 },
-        visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }
-      }}
-      className="flex flex-col gap-10"
-    >
-      {/* ABOUT ME */}
-      <div className="bg-transparent border border-gray-300 rounded-xl p-6 -mt-10 shadow-md hover:shadow-lg transition
-">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-          About Me
-        </h2>
-        <p className="text-gray-700 text-sm sm:text-lg lg:text-sm leading-relaxed">
-          I am a passionate and detail-oriented developer with a strong interest
-          in building clean, responsive, and user-friendly applications.
-          I enjoy learning new technologies, solving real-world problems,
-          and continuously improving my skills through hands-on projects
-          and collaboration.
-        </p>
-
-         <p className="text-gray-700 text-sm sm:text-lg lg:text-sm leading-relaxed mt-4">
-    I also enjoy working in collaborative environments where ideas are
-    shared openly, and I am always eager to improve my problem-solving
-    skills by building real-world projects and exploring new tools
-    and frameworksdsadadadsadasdsadsadsa.
-  </p>
-      </div>
-
-
-      {/* TECH STACK */}
-<div className="bg-transparent border border-gray-300 rounded-xl p-6 -mt-5 shadow-md hover:shadow-lg transition">
-  <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-    Technical Skills
-  </h2>
-
-  <div className="flex flex-col gap-8">
-    {/* FRONTEND */}
-    <div>
-      <h3 className="text-sm sm:text-lg lg:text-base font-semibold -mt-2 mb-2">
-        Frontend
-      </h3>
-      <div className="flex justify-center flex-wrap gap-3">
-        {frontendSkills.map((skill, index) => (
-          <span
-            key={index}
-            className="px-2 py-2 text-sm sm:text-lg lg:text-sm
-                       border border-gray-300 rounded-lg
-                       text-gray-700 bg-gray-100 shadow-sm
-                       hover:bg-gray-100 transition"
+          {/* LEFT COLUMN — ABOUT + SKILLS */}
+          <motion.div
+            ref={skillsAnim.ref}
+            initial="hidden"
+            animate={skillsAnim.controls}
+            variants={{
+              hidden: { opacity: 0, x: -30 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+            }}
+            className="flex flex-col gap-10"
           >
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
-
-    {/* BACKEND */}
-    <div>
-      <h3 className="text-sm sm:text-lg lg:text-base font-semibold -mt-2 mb-2">
-        Backend
-      </h3>
-      <div className="flex justify-center flex-wrap gap-3">
-        {backendSkills.map((skill, index) => (
-          <span
-            key={index}
-            className="px-2 py-2 text-sm sm:text-lg lg:text-sm
-                       border border-gray-300 rounded-lg
-                       text-gray-700 bg-gray-100 shadow-sm
-                       hover:bg-gray-100 transition"
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
-  </div>
-</div>
-
-    </motion.div>
-
-    {/* RIGHT COLUMN — EDUCATION + WORK */}
-    <motion.div
-      ref={aboutMeAnim.ref}
-      initial="hidden"
-      animate={aboutMeAnim.controls}
-      variants={{
-        hidden: { opacity: 0, x: 30 },
-        visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }
-      }}
-      className="flex flex-col gap-10"
-    >
-      {/* EDUCATION */}
-      <div className="bg-transparent border border-gray-300 rounded-xl -mt-10 p-6 shadow-md hover:shadow-lg transition
+            {/* ABOUT ME */}
+            <div className="bg-transparent border border-gray-300 rounded-xl p-6 -mt-10 shadow-md hover:shadow-lg transition
 ">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6">
-          Educational History
-        </h2>
-
-        {education.map((edu) => (
-          <div key={edu.id} className="relative pl-6 mb-5">
-            <div className="absolute left-2 top-0 h-full w-[2px] bg-black/70" />
-            <div className="absolute left-1 top-2 w-2 h-2 bg-black rounded-full" />
-
-            <div className="pl-4">
-              <h3 className="text-base sm:text-lg font-semibold">
-                {edu.institution}
-              </h3>
-              <p className="text-gray-700 text-sm">
-                {edu.degree}
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                About Me
+              </h2>
+              <p className="text-gray-700 text-sm sm:text-lg lg:text-sm leading-relaxed">
+                I am a passionate and detail-oriented developer with a strong interest
+                in building clean, responsive, and user-friendly applications.
+                I enjoy learning new technologies, solving real-world problems,
+                and continuously improving my skills through hands-on projects
+                and collaboration.
               </p>
-              <p className="text-gray-600 text-xs italic font-medium">
-                {edu.latin}
-              </p>
-              <span className="text-gray-500 text-xs">
-                {edu.year}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
 
-      {/* WORK EXPERIENCE */}
-      <div className="bg-transparent border border-gray-300 rounded-xl -mt-5 p-6 shadow-md hover:shadow-lg transition
-">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6">
-          Work Experience
-        </h2>
-
-        {workExperience.map((work, index) => (
-          <div key={index} className="relative pl-6 mb-6">
-            <div className="absolute left-2 top-0 h-full w-[2px] bg-black/70" />
-            <div className="absolute left-1 top-2 w-2 h-2 bg-black rounded-full" />
-
-            <div className="pl-4">
-              <h3 className="text-base sm:text-lg font-semibold">
-                {work.company}
-              </h3>
-              <p className="text-gray-700 text-sm">
-                {work.role}
-              </p>
-              <span className="text-gray-500 text-xs">
-                {work.duration}
-              </span>
-              <p className="text-xs text-gray-600 mt-1">
-                {work.description}
+              <p className="text-gray-700 text-sm sm:text-lg lg:text-sm leading-relaxed mt-4">
+                I also enjoy working in collaborative environments where ideas are
+                shared openly, and I am always eager to improve my problem-solving
+                skills by building real-world projects and exploring new tools
+                and frameworksdsadadadsadasdsadsadsa.
               </p>
             </div>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-
-  </div>
-</section>
 
 
-     {/* Skills Section */}
-<section id="skills-section" className="bg-gray-100 py-5 -mt-10 px-4 sm:px-6">
-  <motion.div
-    ref={skillCardsAnim.ref}
-    initial="hidden"
-    animate="visible"
-    variants={{
-      hidden: { opacity: 0, y: 30 },
-      visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, staggerChildren: 0.15 },
-      },
-    }}
-    className="max-w-2xl mx-auto flex flex-col items-center"
-  >
-    {/* Title */}
-    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 text-center">
-      Skills
-    </h2>
+            {/* TECH STACK */}
+            <div className="bg-transparent border border-gray-300 rounded-xl p-6 -mt-5 shadow-md hover:shadow-lg transition">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                Technical Skills
+              </h2>
 
-    {/* Cards */}
-    <div className="flex flex-wrap justify-center gap-6 w-full">
-      {skills.map((skill, index) => (
-        <motion.div
-          key={index}
-          className="w-[160px] sm:w-[180px] h-[220px]
-                     rounded-xl bg-white text-black shadow
-                     transition-transform duration-300
-                     hover:scale-105 hover:shadow-lg"
-          initial={{ rotateY: 90, opacity: 0 }}
-          whileInView={{
-            rotateY: 0,
-            opacity: 1,
-            transition: { duration: 0.6, delay: index * 0.1 },
-          }}
-          viewport={{ once: true }}
-          style={{ backfaceVisibility: "hidden" }}
-        >
-          <div className="flex flex-col items-center justify-center h-full gap-4 px-4 text-center">
-            <img
-              src={skill.logo}
-              alt={skill.name}
-              className="w-14 h-14 sm:w-16 sm:h-16 object-contain"
-            />
-            <span className="text-sm sm:text-base font-semibold">
-              {skill.name}
-            </span>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  </motion.div>
-</section>
+              <div className="flex flex-col gap-8">
 
+                {/* FRONTEND */}
+                <div>
+                  <h3 className="text-sm sm:text-lg lg:text-base font-semibold -mt-2 mb-2">
+                    Frontend
+                  </h3>
+                  <div className="flex justify-center flex-wrap gap-3">
+                    {frontendSkills.map((skill, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-2 text-sm sm:text-lg lg:text-sm
+                   border border-gray-300 rounded-lg
+                   text-gray-700 bg-gray-100 shadow-sm
+                   hover:bg-gray-100 transition"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
-      <section className="py-16 bg-gray-100 flex items-center justify-center px-4">
-  <motion.p
-    className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center"
-  >
-    Recent Projects
-  </motion.p>
-</section>
+                {/* BACKEND */}
+                <div>
+                  <h3 className="text-sm sm:text-lg lg:text-base font-semibold -mt-5 mb-2">
+                    Backend
+                  </h3>
+                  <div className="flex justify-center flex-wrap gap-3">
+                    {backendSkills.map((skill, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-2 text-sm sm:text-lg lg:text-sm
+                   border border-gray-300 rounded-lg
+                   text-gray-700 bg-gray-100 shadow-sm
+                   hover:bg-gray-100 transition"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
+                {/* DEVELOPER TOOLS */}
+                <div>
+                  <h3 className="text-sm sm:text-lg lg:text-base font-semibold -mt-2 mb-2">
+                    Developer Tools
+                  </h3>
+                  <div className="flex justify-center flex-wrap gap-3">
+                    {developerTools.map((skill, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-2 text-sm sm:text-lg lg:text-sm
+                   border border-gray-300 rounded-lg
+                   text-gray-700 bg-gray-100 shadow-sm
+                   hover:bg-gray-100 transition"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
-      {/* Past Projects Section */}
-      <section
-  id="projects-section"
-  className="bg-gray-100 py-20 px-4 sm:px-6"
->
-  <motion.div
-    ref={projectsAnim?.ref}
-    initial="hidden"
-    animate={projectsAnim?.controls}
-    variants={{
-      hidden: { opacity: 0, scale: 0.95 },
-      visible: { opacity: 1, scale: 1, transition: { duration: 0.8 } }
-    }}
-    className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12"
-  >
-    {projects.map((project, index) => {
-      const currentImageIndex = imageIndices[index]
+              </div>
+            </div>
+          </motion.div>
 
-      return (
-        <motion.div
-          key={project.id}
-          className="flex flex-col items-center w-full py-1 -mt-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.15 }}
-        >
-          {/* Image */}
-          <motion.img
-            src={project.images[currentImageIndex]}
-            alt={project.title}
-            className="w-full h-[220px] sm:h-[260px] md:h-[300px]
-                       object-cover rounded-lg shadow"
-            whileHover={{ scale: 0.97 }}
-          />
+          <motion.div
+            ref={aboutMeAnim.ref}
+            initial="hidden"
+            animate={aboutMeAnim.controls}
+            variants={{
+              hidden: { opacity: 0, x: 30 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+            }}
+            className="flex flex-col gap-10"
+          >
+            {/* EDUCATION */}
+            <div className="bg-transparent border border-gray-300 rounded-xl -mt-10 p-6 shadow-md hover:shadow-lg transition
+">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+                Educational History
+              </h2>
 
-          {/* Info */}
-          <div className="mt-5 w-full px-1">
-            <h3 className="text-lg sm:text-xl font-semibold">
-              {project.title}
-            </h3>
+              {education.map((edu) => (
+                <div key={edu.id} className="relative pl-6 mb-5">
+                  <div className="absolute left-2 top-0 h-full w-[2px] bg-black/70" />
+                  <div className="absolute left-1 top-2 w-2 h-2 bg-black rounded-full" />
 
-            <p className="text-sm sm:text-lg lg:text-sm text-gray-700 mt-2">
-              {project.description}
-            </p>
+                  <div className="pl-4">
+                    <h3 className="text-base sm:text-lg font-semibold">
+                      {edu.institution}
+                    </h3>
+                    <p className="text-gray-700 text-sm">
+                      {edu.degree}
+                    </p>
+                    <p className="text-gray-600 text-xs italic font-medium">
+                      {edu.latin}
+                    </p>
+                    <span className="text-gray-500 text-xs">
+                      {edu.year}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-            <div className="flex flex-wrap justify-between items-center gap-4 mt-4">
-              <div className="flex gap-3">
-                {project.technologies?.map((tech) => (
-                  <img
-                    key={tech}
-                    src={`/${tech.toLowerCase()}.png`}
-                    alt={tech}
-                    className="w-6 h-6"
-                  />
+            {/* WORK EXPERIENCE */}
+            <div className="bg-transparent border border-gray-300 rounded-xl -mt-5 p-6 shadow-md hover:shadow-lg transition
+">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+                Work Experience
+              </h2>
+
+              {workExperience.map((work, index) => (
+                <div key={index} className="relative pl-6 mb-6">
+                  <div className="absolute left-2 top-0 h-full w-[2px] bg-black/70" />
+                  <div className="absolute left-1 top-2 w-2 h-2 bg-black rounded-full" />
+
+                  <div className="pl-4">
+                    <h3 className="text-base sm:text-lg font-semibold">
+                      {work.company}
+                    </h3>
+                    <p className="text-gray-700 text-sm">
+                      {work.role}
+                    </p>
+                    <span className="text-gray-500 text-xs">
+                      {work.duration}
+                    </span>
+                    <p className="text-xs text-gray-600 mt-1">
+                      {work.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* Skills + Recent Projects Wrapper */}
+      <section className="bg-gray-100 py-16 px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+          {/* SKILLS*/}
+          <div id="skills-section">
+            <div
+              className="bg-transparent border border-gray-300 rounded-xl -mt-32 p-6 shadow-md hover:shadow-lg transition"
+            >
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                Skills
+              </h2>
+
+              <div className="grid grid-cols-2 sm:grid-cols-2 gap-5">
+                {skills.map((skill, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                    className="bg-gray-100 rounded-lg p-3 shadow-sm
+                     flex flex-col items-center justify-center
+                     hover:shadow-md hover:-translate-y-1
+                     transition-all duration-300"
+                  >
+                    <img
+                      src={skill.logo}
+                      alt={skill.name}
+                      className="w-7 h-7 object-contain mb-2"
+                    />
+                    <span className="text-xs sm:text-sm font-semibold text-center text-gray-700">
+                      {skill.name}
+                    </span>
+                  </motion.div>
                 ))}
               </div>
-
-              {project.link && (
-  <a
-    href={project.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={`group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 ${
-      project.title?.toLowerCase() === "yapak"
-        ? "hover:bg-green-700"
-        : "hover:bg-blue-900"
-    }`}
-  >
-    <span>View</span>
-    <FiArrowUpRight
-      size={16}
-      className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-    />
-  </a>
-)}
-
             </div>
           </div>
-        </motion.div>
-      )
-    })}
-  </motion.div>
-</section>
+
+          {/* ================= RIGHT : RECENT PROJECTS ================= */}
+          <div className="flex flex-col gap-10">
+
+            {/* Title */}
+            <motion.h2
+              className="text-2xl sm:text-3xl md:text-4xl font-semibold"
+            >
+              Recent Projects
+            </motion.h2>
+
+            {/* Projects */}
+            <motion.div
+              ref={projectsAnim?.ref}
+              initial="hidden"
+              animate={projectsAnim?.controls}
+              variants={{
+                hidden: { opacity: 0, scale: 0.95 },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  transition: { duration: 0.8 },
+                },
+              }}
+              className="grid grid-cols-1 gap-12"
+            >
+              {projects.map((project, index) => {
+                const currentImageIndex = imageIndices[index]
+
+                return (
+                  <motion.div
+                    key={project.id}
+                    className="flex flex-col items-center w-full"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.15 }}
+                  >
+                    {/* Image */}
+                    <motion.img
+                      src={project.images[currentImageIndex]}
+                      alt={project.title}
+                      className="w-full h-[220px] sm:h-[260px] md:h-[300px]
+                           object-cover rounded-lg shadow"
+                      whileHover={{ scale: 0.97 }}
+                    />
+
+                    {/* Info */}
+                    <div className="mt-5 w-full">
+                      <h3 className="text-lg sm:text-xl font-semibold">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-sm sm:text-base text-gray-700 mt-2">
+                        {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap justify-between items-center gap-4 mt-4">
+                        <div className="flex gap-3">
+                          {project.technologies?.map((tech) => (
+                            <img
+                              key={tech}
+                              src={`/${tech.toLowerCase()}.png`}
+                              alt={tech}
+                              className="w-6 h-6"
+                            />
+                          ))}
+                        </div>
+
+                        {project.link && (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 ${project.title?.toLowerCase() === "yapak"
+                                ? "hover:bg-green-700"
+                                : "hover:bg-blue-900"
+                              }`}
+                          >
+                            <span>View</span>
+                            <FiArrowUpRight
+                              size={16}
+                              className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                            />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </motion.div>
+          </div>
+
+        </div>
+      </section>
+
 
 
       {/* Contact Section */}
       <section
-  id="contact-section"
-  className="w-full bg-gray-100 mb-6 -mt-36 py-5 sm:py-28 px-4 sm:px-6"
->
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    viewport={{ once: true }}
-    className="max-w-5xl mx-auto flex flex-col lg:flex-row items-stretch justify-between gap-16"
-  >
-    {/* Contact Form */}
-    <motion.div
-      initial={{ opacity: 0, x: -30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, delay: 0.2 }}
-      viewport={{ once: true }}
-      className="flex-1"
-    >
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-poppins mb-6 text-gray-900">
-        Contact
-      </h2>
-
-      <p className="text-sm sm:text-base text-gray-700 max-w-md mb-8 leading-relaxed">
-        Feel free to reach out if you have any questions, project ideas, job offers,
-        or just want to connect!
-      </p>
-
-      {/* FORM — ANIMATION & FUNCTION INTACT */}
-      <form className="w-full max-w-md space-y-6">
-        {/* Name */}
+        id="contact-section"
+        className="w-full bg-gray-100 mb-6 -mt-36 py-5 sm:py-28 px-4 sm:px-6"
+      >
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.3 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative"
+          className="max-w-5xl mx-auto flex flex-col lg:flex-row items-stretch justify-between gap-16"
         >
-          <input
-            type="text"
-            id="name"
-            placeholder=" "
-            required
-            className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="flex-1"
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-poppins mb-6 text-gray-900">
+              Contact
+            </h2>
+
+            <p className="text-sm sm:text-base text-gray-700 max-w-md mb-8 leading-relaxed">
+              Feel free to reach out if you have any questions, project ideas, job offers,
+              or just want to connect!
+            </p>
+
+            {/* FORM — ANIMATION & FUNCTION INTACT */}
+            <form className="w-full max-w-md space-y-6">
+              {/* Name */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <input
+                  type="text"
+                  id="name"
+                  placeholder=" "
+                  required
+                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
                        placeholder-transparent focus:outline-none focus:ring-2 focus:ring-black"
-          />
-          <label
-            htmlFor="name"
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
+                />
+                <label
+                  htmlFor="name"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
                        transition-all duration-200
                        peer-placeholder-shown:top-1/2
                        peer-focus:top-0 peer-focus:text-xs
                        peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-xs"
-          >
-            Your Name
-          </label>
-        </motion.div>
+                >
+                  Your Name
+                </label>
+              </motion.div>
 
-        {/* Email */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="relative"
-        >
-          <input
-            type="email"
-            id="email"
-            placeholder=" "
-            required
-            className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
+              {/* Email */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <input
+                  type="email"
+                  id="email"
+                  placeholder=" "
+                  required
+                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
                        placeholder-transparent focus:outline-none focus:ring-2 focus:ring-black"
-          />
-          <label
-            htmlFor="email"
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
+                />
+                <label
+                  htmlFor="email"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
                        transition-all duration-200
                        peer-placeholder-shown:top-1/2
                        peer-focus:top-0 peer-focus:text-xs
                        peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-xs"
-          >
-            Your Email
-          </label>
-        </motion.div>
+                >
+                  Your Email
+                </label>
+              </motion.div>
 
-        {/* Message */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="relative"
-        >
-          <textarea
-            id="message"
-            rows={5}
-            placeholder=" "
-            required
-            className="peer w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
+              {/* Message */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <textarea
+                  id="message"
+                  rows={5}
+                  placeholder=" "
+                  required
+                  className="peer w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
                        placeholder-transparent focus:outline-none focus:ring-2 focus:ring-black resize-none"
-          />
-          <label
-            htmlFor="message"
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
+                />
+                <label
+                  htmlFor="message"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
                        transition-all duration-200
                        peer-placeholder-shown:top-1/2
                        peer-focus:top-0 peer-focus:text-xs
                        peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-xs"
-          >
-            Your Message
-          </label>
-        </motion.div>
+                >
+                  Your Message
+                </label>
+              </motion.div>
 
-        {/* Submit */}
-        <motion.button
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.97 }}
-          type="submit"
-          className="bg-transparent text-black px-6 py-3 rounded-lg
+              {/* Submit */}
+              <motion.button
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                type="submit"
+                className="bg-transparent text-black px-6 py-3 rounded-lg
            border border-gray-300
            hover:bg-gray-900 hover:text-white transition flex items-center gap-2"
-        >
-          Send Message
-          <TbArrowUpRight className="w-5 h-5" />
-        </motion.button>
-      </form>
-    </motion.div>
-  </motion.div>
-</section>
-
+              >
+                Send Message
+                <TbArrowUpRight className="w-5 h-5" />
+              </motion.button>
+            </form>
+          </motion.div>
+        </motion.div>
+      </section>
 
 
       {/* Social Links */}
@@ -768,9 +782,6 @@ const backendSkills = [
           </button>
         </div>
       </footer>
-
-
-
     </div>
   );
 }
