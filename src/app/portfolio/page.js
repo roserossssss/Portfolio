@@ -9,6 +9,8 @@ import { Eye, ChevronRight, ChevronLeft } from "lucide-react";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { TbArrowUpRight } from "react-icons/tb";
+import { MapPinIcon } from "@heroicons/react/24/outline";
+
 
 export default function Portfolio() {
 
@@ -25,8 +27,6 @@ export default function Portfolio() {
 
     return { ref, controls };
   };
-
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
 
   // About Me & Education Animation
@@ -64,6 +64,8 @@ export default function Portfolio() {
     "Discord",
     "Teams",
     "Aseprite",
+    "Figma",
+    "Canva",
   ];
 
 
@@ -149,17 +151,28 @@ export default function Portfolio() {
     );
   };
 
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0)
+
+  const nextProject = () => {
+    setCurrentProjectIndex((prev) =>
+      prev === projects.length - 1 ? 0 : prev + 1
+    )
+  }
+
+  const prevProject = () => {
+    setCurrentProjectIndex((prev) =>
+      prev === 0 ? projects.length - 1 : prev - 1
+    )
+  }
+
+  const project = projects[currentProjectIndex]
+  const currentImageIndex = imageIndices[currentProjectIndex]
+
   return (
     <div className="min-h-screen bg-gray-100 text-black">
-      {/* Header */}
-      <div className="w-full bg-black text-white py-4 px-6 fixed top-0 left-0 z-50 shadow-md">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif">
-          Portfolio
-        </h1>
-      </div>
 
       {/* Main Section */}
-      <section id="landing" className="pt-32 px-4 sm:px-6">
+      <section id="landing" className="pt-16 px-4 mb-10 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <motion.div
             className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8"
@@ -169,16 +182,26 @@ export default function Portfolio() {
           >
             {/* Avatar */}
             <motion.div
-              className="w-[120px] h-[120px] sm:w-[160px] sm:h-[160px]
-             aspect-square rounded-md overflow-hidden shadow-md"
+              className="relative w-[120px] h-[120px] sm:w-[160px] sm:h-[160px]
+  aspect-square rounded-md overflow-hidden shadow-md group"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6 }}
             >
+              {/* Default image */}
               <img
                 src="/PORTFOLIO PIC.jpg"
                 alt="Althea Rose Sardana"
-                className="w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover object-[center_10%]
+    transition-opacity duration-300 group-hover:opacity-0"
+              />
+
+              {/* Hover image */}
+              <img
+                src="/PORTFOLIO PIC 2.jpg"
+                alt="Althea Rose Sardana Hover"
+                className="absolute inset-0 w-full h-full object-cover object-[center_15%]
+    opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
             </motion.div>
 
@@ -186,17 +209,19 @@ export default function Portfolio() {
             {/* Info */}
             <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2 flex-1">
               {/* Name */}
-              <h1 className="text-2xl sm:text-3xl font-bold font-poppins">
+              <h1 className="text-2xl sm:text-3xl mt-4 font-bold font-poppins">
                 Althea Rose S. Sardana
               </h1>
 
               {/* Location */}
-              <p className="text-sm text-gray-500">
-                Pasig CIty, Philippines
-              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-500">
+                <MapPinIcon className="w-4 h-4 text-gray-500" />
+                <p>Pasig City, Philippines</p>
+              </div>
+
 
               {/* Roles */}
-              <p className="text-xs sm:text-base text-gray-700">
+              <p className="text-xs sm:text-sm text-gray-700">
                 <Typewriter
                   words={['Front End Developer', 'Graphic Artist']}
                   loop
@@ -209,7 +234,7 @@ export default function Portfolio() {
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap justify-center sm:justify-start gap-3 mt-4">
+              <div className="flex flex-wrap justify-center sm:justify-start gap-3 mb-3">
                 {/* Send Message */}
                 <button
                   onClick={() =>
@@ -218,7 +243,7 @@ export default function Portfolio() {
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                   className="px-4 py-2 bg-black text-white rounded-lg text-sm
-               hover:bg-gray-800 transition flex items-center gap-2"
+                hover:bg-white hover:text-black hover: border border-black transition flex items-center gap-2"
                 >
                   Send Message
                 </button>
@@ -228,7 +253,7 @@ export default function Portfolio() {
                   href="/SARDAÑA, ALTHEA ROSE_RESUME.pdf"
                   download
                   className="px-4 py-2 border border-black rounded-lg text-sm
-               hover:bg-gray-100 transition flex items-center gap-2"
+                hover:bg-gray-100 transition flex items-center gap-2"
                 >
                   Download Resume
                 </a>
@@ -239,12 +264,9 @@ export default function Portfolio() {
         </div>
       </section>
 
-
-
       <section id="about-section" className="bg-gray-100 py-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-          {/* LEFT COLUMN — ABOUT + SKILLS */}
           <motion.div
             ref={skillsAnim.ref}
             initial="hidden"
@@ -255,93 +277,86 @@ export default function Portfolio() {
             }}
             className="flex flex-col gap-10"
           >
-            {/* ABOUT ME */}
-            <div className="bg-transparent border border-gray-300 rounded-xl p-6 -mt-10 shadow-md hover:shadow-lg transition
+            {/* About Me */}
+            <div className="bg-transparent border border-gray-100 rounded-xl p-6 -mt-24 shadow-md hover:shadow-lg transition
 ">
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 About Me
               </h2>
               <p className="text-gray-700 text-sm sm:text-lg lg:text-sm leading-relaxed">
-                I am a passionate and detail-oriented developer with a strong interest
-                in building clean, responsive, and user-friendly applications.
-                I enjoy learning new technologies, solving real-world problems,
-                and continuously improving my skills through hands-on projects
-                and collaboration.
+                I am a recent Bachelor of Science in Information Technology graduate with foundational knowledge in programming, web development, and database management, and game development. During my studies, I developed strong problem-solving skills and gained experience working with different technologies through academic projects and hands-on activities.
               </p>
 
               <p className="text-gray-700 text-sm sm:text-lg lg:text-sm leading-relaxed mt-4">
-                I also enjoy working in collaborative environments where ideas are
-                shared openly, and I am always eager to improve my problem-solving
-                skills by building real-world projects and exploring new tools
-                and frameworksdsadadadsadasdsadsadsa.
+                As a fresh graduate, I am eager to begin my career in the IT industry and continuously improve my technical and professional skills. I am highly motivated, adaptable, and ready to contribute to a team while learning and growing in a dynamic work environmen
               </p>
             </div>
 
 
-            {/* TECH STACK */}
-            <div className="bg-transparent border border-gray-300 rounded-xl p-6 -mt-5 shadow-md hover:shadow-lg transition">
+            {/* Tech Stack */}
+            <div className="bg-transparent border border-gray-100 rounded-xl p-6 -mt-5 shadow-md hover:shadow-lg transition">
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Technical Skills
               </h2>
 
               <div className="flex flex-col gap-8">
 
-                {/* FRONTEND */}
+                {/* Frontend */}
                 <div>
-                  <h3 className="text-sm sm:text-lg lg:text-base font-semibold -mt-2 mb-2">
+                  <h3 className="text-sm sm:text-xs lg:text-base font-semibold -mt-2 mb-2">
                     Frontend
                   </h3>
-                  <div className="flex justify-center flex-wrap gap-3">
+                  <div className="flex justify-start flex-wrap gap-2">
                     {frontendSkills.map((skill, index) => (
                       <span
                         key={index}
-                        className="px-2 py-2 text-sm sm:text-lg lg:text-sm
-                   border border-gray-300 rounded-lg
-                   text-gray-700 bg-gray-100 shadow-sm
-                   hover:bg-gray-100 transition"
+                        className="px-2 py-2 text-xs lg:text-xs
+  border border-gray-100 rounded-lg
+  text-gray-700 bg-gray-100
+  shadow-sm
+  transition-transform transition-shadow
+  duration-150 ease-out
+  hover:-translate-y-1 hover:shadow-lg"
                       >
                         {skill}
                       </span>
+
                     ))}
                   </div>
                 </div>
 
-                {/* BACKEND */}
+                {/* Backend */}
                 <div>
                   <h3 className="text-sm sm:text-lg lg:text-base font-semibold -mt-5 mb-2">
                     Backend
                   </h3>
-                  <div className="flex justify-center flex-wrap gap-3">
+                  <div className="flex justify-start flex-wrap gap-2">
                     {backendSkills.map((skill, index) => (
                       <span
                         key={index}
-                        className="px-2 py-2 text-sm sm:text-lg lg:text-sm
-                   border border-gray-300 rounded-lg
-                   text-gray-700 bg-gray-100 shadow-sm
-                   hover:bg-gray-100 transition"
+                        className="px-2 py-2 text-xs lg:text-xs border border-gray-100 rounded-lg text-gray-700 bg-gray-100 shadow-sm transition-transform transition-shadow duration-150 ease-out hover:-translate-y-1 hover:shadow-lg"
                       >
                         {skill}
                       </span>
+
                     ))}
                   </div>
                 </div>
 
-                {/* DEVELOPER TOOLS */}
+                {/* Developer Tools */}
                 <div>
                   <h3 className="text-sm sm:text-lg lg:text-base font-semibold -mt-2 mb-2">
                     Developer Tools
                   </h3>
-                  <div className="flex justify-center flex-wrap gap-3">
+                  <div className="flex justify-start flex-wrap gap-2">
                     {developerTools.map((skill, index) => (
                       <span
                         key={index}
-                        className="px-2 py-2 text-sm sm:text-lg lg:text-sm
-                   border border-gray-300 rounded-lg
-                   text-gray-700 bg-gray-100 shadow-sm
-                   hover:bg-gray-100 transition"
+                        className="px-2 py-2 text-xs lg:text-xs border border-gray-100 rounded-lg text-gray-700 bg-gray-100 shadow-sm transition-transform transition-shadow duration-150 ease-out hover:-translate-y-1 hover:shadow-lg"
                       >
                         {skill}
                       </span>
+
                     ))}
                   </div>
                 </div>
@@ -360,8 +375,8 @@ export default function Portfolio() {
             }}
             className="flex flex-col gap-10"
           >
-            {/* EDUCATION */}
-            <div className="bg-transparent border border-gray-300 rounded-xl -mt-10 p-6 shadow-md hover:shadow-lg transition
+            {/* Education */}
+            <div className="bg-transparent border border-gray-100 rounded-xl lg:-mt-24 -mt-5 p-6 shadow-md hover:shadow-lg transition
 ">
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">
                 Educational History
@@ -390,8 +405,8 @@ export default function Portfolio() {
               ))}
             </div>
 
-            {/* WORK EXPERIENCE */}
-            <div className="bg-transparent border border-gray-300 rounded-xl -mt-5 p-6 shadow-md hover:shadow-lg transition
+            {/* Work Experience */}
+            <div className="bg-transparent border border-gray-100 rounded-xl -mt-5 p-6 shadow-md hover:shadow-lg transition
 ">
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">
                 Work Experience
@@ -424,20 +439,19 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Skills + Recent Projects Wrapper */}
       <section className="bg-gray-100 py-16 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
-          {/* SKILLS*/}
+          {/* Skills*/}
           <div id="skills-section">
             <div
-              className="bg-transparent border border-gray-300 rounded-xl -mt-32 p-6 shadow-md hover:shadow-lg transition"
+              className="bg-transparent border border-gray-100 rounded-xl -mt-32 p-6 shadow-md hover:shadow-lg transition"
             >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Skills
               </h2>
 
-              <div className="grid grid-cols-2 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-1 gap-5">
                 {skills.map((skill, index) => (
                   <motion.div
                     key={index}
@@ -464,107 +478,104 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* ================= RIGHT : RECENT PROJECTS ================= */}
-          <div className="flex flex-col gap-10">
+          {/* Recent Projects */}
+          <div className="flex flex-col">
 
-            {/* Title */}
-            <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl font-semibold"
-            >
-              Recent Projects
-            </motion.h2>
-
-            {/* Projects */}
             <motion.div
-              ref={projectsAnim?.ref}
-              initial="hidden"
-              animate={projectsAnim?.controls}
-              variants={{
-                hidden: { opacity: 0, scale: 0.95 },
-                visible: {
-                  opacity: 1,
-                  scale: 1,
-                  transition: { duration: 0.8 },
-                },
-              }}
-              className="grid grid-cols-1 gap-12"
+              className="bg-transparent border border-gray-100 rounded-xl p-6
+    shadow-md hover:shadow-lg transition-all duration-300
+    mt-0 lg:-mt-52 xl:-mt-56 min-w-0"
             >
-              {projects.map((project, index) => {
-                const currentImageIndex = imageIndices[index]
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+                Recent Projects
+              </h2>
 
-                return (
-                  <motion.div
-                    key={project.id}
-                    className="flex flex-col items-center w-full"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.15 }}
-                  >
-                    {/* Image */}
-                    <motion.img
-                      src={project.images[currentImageIndex]}
-                      alt={project.title}
-                      className="w-full h-[220px] sm:h-[260px] md:h-[300px]
-                           object-cover rounded-lg shadow"
-                      whileHover={{ scale: 0.97 }}
-                    />
+              {/* Project Content */}
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                {/* Image */}
+                <motion.img
+                  src={project.images[currentImageIndex]}
+                  alt={project.title}
+                  className="w-full h-[220px] sm:h-[260px] md:h-[300px]
+                   object-cover rounded-lg shadow"
+                  whileHover={{ scale: 0.97 }}
+                />
 
-                    {/* Info */}
-                    <div className="mt-5 w-full">
-                      <h3 className="text-lg sm:text-xl font-semibold">
-                        {project.title}
-                      </h3>
+                {/* Info */}
+                <div className="mt-5">
+                  <h3 className="text-lg sm:text-xl font-semibold">
+                    {project.title}
+                  </h3>
 
-                      <p className="text-sm sm:text-base text-gray-700 mt-2">
-                        {project.description}
-                      </p>
+                  <p className="text-sm text-gray-700 mt-2">
+                    {project.description}
+                  </p>
 
-                      <div className="flex flex-wrap justify-between items-center gap-4 mt-4">
-                        <div className="flex gap-3">
-                          {project.technologies?.map((tech) => (
-                            <img
-                              key={tech}
-                              src={`/${tech.toLowerCase()}.png`}
-                              alt={tech}
-                              className="w-6 h-6"
-                            />
-                          ))}
-                        </div>
-
-                        {project.link && (
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 ${project.title?.toLowerCase() === "yapak"
-                                ? "hover:bg-green-700"
-                                : "hover:bg-blue-900"
-                              }`}
-                          >
-                            <span>View</span>
-                            <FiArrowUpRight
-                              size={16}
-                              className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                            />
-                          </a>
-                        )}
-                      </div>
+                  <div className="flex justify-between items-center mt-4 gap-4">
+                    {/* Tech Icons */}
+                    <div className="flex gap-3">
+                      {project.technologies?.map((tech) => (
+                        <img
+                          key={tech}
+                          src={`/${tech.toLowerCase()}.png`}
+                          alt={tech}
+                          className="w-6 h-6"
+                        />
+                      ))}
                     </div>
-                  </motion.div>
-                )
-              })}
+
+                    {/* View Buttons */}
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 ${project.title?.toLowerCase() === "yapak"
+                          ? "hover:bg-green-700"
+                          : "hover:bg-blue-900"
+                          }`}
+                      >
+                        View
+                        <FiArrowUpRight
+                          size={16}
+                          className="group-hover:translate-x-1 group-hover:-translate-y-1 transition"
+                        />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Navigation */}
+              <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
+                <button
+                  onClick={prevProject}
+                  className="text-sm font-medium text-gray-600 hover:text-black transition"
+                >
+                  ← Prev
+                </button>
+
+                <button
+                  onClick={nextProject}
+                  className="text-sm font-medium text-gray-600 hover:text-black transition"
+                >
+                  Next →
+                </button>
+              </div>
             </motion.div>
           </div>
-
         </div>
       </section>
-
-
 
       {/* Contact Section */}
       <section
         id="contact-section"
-        className="w-full bg-gray-100 mb-6 -mt-36 py-5 sm:py-28 px-4 sm:px-6"
+        className="w-full bg-gray-100 mb-6 -mt-4 lg:-mt-32 py-16 sm:py-24 px-4 sm:px-6"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -579,7 +590,7 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="flex-1"
+            className="flex-1 -mt-24 sm:-mt-16 lg:mt-0"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-poppins mb-6 text-gray-900">
               Contact
@@ -589,8 +600,6 @@ export default function Portfolio() {
               Feel free to reach out if you have any questions, project ideas, job offers,
               or just want to connect!
             </p>
-
-            {/* FORM — ANIMATION & FUNCTION INTACT */}
             <form className="w-full max-w-md space-y-6">
               {/* Name */}
               <motion.div
@@ -700,7 +709,7 @@ export default function Portfolio() {
           href="https://github.com/roserossssss"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-black hover:text-blue-500 transition duration-300"
+          className="text-black hover:text-green-500 transition duration-300"
         >
           <Github size={24} className="sm:size-[28px]" />
         </a>
@@ -708,7 +717,7 @@ export default function Portfolio() {
           href="https://www.linkedin.com/in/althea-rose-sardaña-335b60297"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-black hover:text-blue-500 transition duration-300"
+          className="text-black hover:text-yellow-500 transition duration-300"
         >
           <Linkedin size={24} className="sm:size-[28px]" />
         </a>
@@ -716,7 +725,7 @@ export default function Portfolio() {
           href="https://mail.google.com/mail/?view=cm&fs=1&to=queeniesardana95@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-black hover:text-blue-500 transition duration-300"
+          className="text-black hover:text-red-500 transition duration-300"
         >
           <Mail size={24} className="sm:size-[28px]" />
         </a>
@@ -726,62 +735,24 @@ export default function Portfolio() {
       <footer className="fixed bottom-0 left-0 w-full h-16 bg-black py-6 px-6 sm:px-10 flex items-center justify-between z-50">
         <div className="hidden sm:block w-1/3"></div>
 
-        {/* Dropdown and Arrow aligned to the right */}
         <div className="relative flex flex-col items-end ml-auto pr-4 sm:pr-0">
-          {/* Dropdown Menu */}
-          <div
-            className={`absolute bottom-16 mb-2 w-36 sm:w-40 bg-white rounded-lg shadow-lg py-2 text-sm font-medium text-black
-      transition-all duration-300 ease-out transform origin-top
-      ${dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
-    `}
-          >
-            <button
-              onClick={() => {
-                document.getElementById("landing")?.scrollIntoView({ behavior: "smooth" });
-                setDropdownOpen(false);
-              }}
-              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-            >
-              Landing Page
-            </button>
-            <button
-              onClick={() => {
-                document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-                setDropdownOpen(false);
-              }}
-              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-            >
-              About Me
-            </button>
-            <button
-              onClick={() => {
-                document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
-                setDropdownOpen(false);
-              }}
-              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-            >
-              Skills
-            </button>
-            <button
-              onClick={() => {
-                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-                setDropdownOpen(false);
-              }}
-              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-            >
-              Projects
-            </button>
-          </div>
-
           {/* Arrow Button */}
           <button
-            className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white text-black hover:bg-gray-300 transition duration-300"
-            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center
+      rounded-full bg-white text-black hover:bg-gray-300
+      transition duration-300"
+            onClick={() =>
+              document.getElementById("landing")?.scrollIntoView({
+                behavior: "smooth",
+              })
+            }
+            title="Back to top"
           >
-            {dropdownOpen ? <ArrowDown size={20} className="sm:size-[24px]" /> : <ArrowUp size={20} className="sm:size-[24px]" />}
+            <ArrowUp size={20} className="sm:size-[24px]" />
           </button>
         </div>
       </footer>
+
     </div>
   );
 }
