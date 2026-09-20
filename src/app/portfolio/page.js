@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUp, ArrowDown } from "lucide-react";
+import { ArrowUp, ArrowDown, Sun, Moon } from "lucide-react";
 import { Typewriter } from "react-simple-typewriter";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -13,6 +13,46 @@ import { MapPinIcon } from "@heroicons/react/24/outline";
 
 
 export default function Portfolio() {
+
+  // Dark Mode
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") setDarkMode(true);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
+
+  const toggleDarkMode = () => setDarkMode((prev) => !prev);
+
+  // Reusable dark-mode-aware class strings
+  const cardClass = `rounded-xl p-6 shadow-md hover:shadow-lg transition-colors duration-300 border ${
+    darkMode
+      ? "bg-neutral-800 border-neutral-700 text-white"
+      : "bg-transparent border-gray-100 text-black"
+  }`;
+
+  const textSecondary = darkMode ? "text-gray-300" : "text-gray-700";
+  const textMuted = darkMode ? "text-gray-400" : "text-gray-500";
+  const textMuted2 = darkMode ? "text-gray-400" : "text-gray-600";
+  const timelineBar = darkMode ? "bg-white/70" : "bg-black/70";
+  const timelineDot = darkMode ? "bg-white" : "bg-black";
+  const chipClass = `px-2 py-2 text-xs lg:text-xs border rounded-lg shadow-sm transition-transform transition-shadow duration-150 ease-out hover:-translate-y-1 hover:shadow-lg ${
+    darkMode
+      ? "border-neutral-700 text-gray-200 bg-neutral-800"
+      : "border-gray-100 text-gray-700 bg-gray-100"
+  }`;
+  const inputClass = `peer h-12 w-full border rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base placeholder-transparent focus:outline-none focus:ring-2 transition-colors duration-300 ${
+    darkMode
+      ? "border-neutral-700 bg-neutral-900 text-white focus:ring-white"
+      : "border-gray-300 bg-gray-100 focus:ring-black"
+  }`;
+  const labelClass = `absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base px-1 transition-all duration-200 pointer-events-none peer-placeholder-shown:top-1/2 peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-xs peer-[&:not(:placeholder-shown)]:-top-2.5 peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-xs ${
+    darkMode ? "text-gray-300 bg-neutral-900" : "text-gray-700 bg-gray-100"
+  }`;
 
   // Handle scroll animations
   const useScrollAnimation = () => {
@@ -97,6 +137,13 @@ export default function Portfolio() {
       duration: "March 2025 – June 2025",
       description:
         "Developed and maintained the UI for a responsive dive booking platform using React. Collaborated with back-end developers and designers to optimize the user experience and interface consistency."
+    },
+    {
+      company: "Project Management and Modernization Center (PMMC)",
+      role: "Project Management Officer",
+      duration: "March 2026 – Present",
+      description:
+        "Supported QA testing and project coordination within the Project Management Information System (PMIS) by identifying defects, validating system functionality, and tracking project activities to ensure application quality and on-time delivery aligned with project goals."
     }
   ];
 
@@ -169,7 +216,18 @@ export default function Portfolio() {
   const currentImageIndex = imageIndices[currentProjectIndex]
 
   return (
-    <div className="min-h-screen bg-gray-100 text-black">
+    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "bg-neutral-900 text-white" : "bg-gray-100 text-black"}`}>
+
+      {/* Dark Mode Toggle */}
+      <button
+        onClick={toggleDarkMode}
+        className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-50 w-10 h-10 flex items-center justify-center rounded-full shadow-md transition duration-300 ${
+          darkMode ? "bg-white text-black hover:bg-gray-300" : "bg-black text-white hover:bg-neutral-700"
+        }`}
+        title="Toggle dark mode"
+      >
+        {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
 
       {/* Main Section */}
       <section id="landing" className="pt-16 px-4 mb-10 sm:px-6">
@@ -214,14 +272,14 @@ export default function Portfolio() {
               </h1>
 
               {/* Location */}
-              <div className="flex items-center gap-2 text-sm text-gray-500">
-                <MapPinIcon className="w-4 h-4 text-gray-500" />
+              <div className={`flex items-center gap-2 text-sm ${textMuted}`}>
+                <MapPinIcon className={`w-4 h-4 ${textMuted}`} />
                 <p>Pasig City, Philippines</p>
               </div>
 
 
               {/* Roles */}
-              <p className="text-xs sm:text-sm text-gray-700">
+              <p className={`text-xs sm:text-sm ${textSecondary}`}>
                 <Typewriter
                   words={['Front End Developer', 'Graphic Artist']}
                   loop
@@ -242,18 +300,24 @@ export default function Portfolio() {
                       .getElementById("contact-section")
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="px-4 py-2 bg-black text-white rounded-lg text-sm
-                hover:bg-white hover:text-black hover: border border-black transition flex items-center gap-2"
+                  className={`px-4 py-2 rounded-lg text-sm border transition flex items-center gap-2 ${
+                    darkMode
+                      ? "bg-white text-black border-white hover:bg-neutral-900 hover:text-white"
+                      : "bg-black text-white border-black hover:bg-white hover:text-black"
+                  }`}
                 >
                   Send Message
                 </button>
 
                 {/* Download Resume */}
                 <a
-                  href="/SARDAÑA, ALTHEA ROSE_RESUME.pdf"
+                  href="/SARDAÑA, ALTHEA ROSE_RESUME.pdf"
                   download
-                  className="px-4 py-2 border border-black rounded-lg text-sm
-                hover:bg-gray-100 transition flex items-center gap-2"
+                  className={`px-4 py-2 border rounded-lg text-sm transition flex items-center gap-2 ${
+                    darkMode
+                      ? "border-white hover:bg-neutral-800"
+                      : "border-black hover:bg-gray-100"
+                  }`}
                 >
                   Download Resume
                 </a>
@@ -264,7 +328,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section id="about-section" className="bg-gray-100 py-20 px-4 sm:px-6">
+      <section id="about-section" className={`py-20 px-4 sm:px-6 transition-colors duration-300`}>
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
 
           <motion.div
@@ -278,23 +342,22 @@ export default function Portfolio() {
             className="flex flex-col gap-10"
           >
             {/* About Me */}
-            <div className="bg-transparent border border-gray-100 rounded-xl p-6 -mt-24 shadow-md hover:shadow-lg transition
-">
+            <div className={`${cardClass} -mt-24`}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 About Me
               </h2>
-              <p className="text-gray-700 text-sm sm:text-lg lg:text-sm leading-relaxed">
+              <p className={`text-sm sm:text-lg lg:text-sm leading-relaxed ${textSecondary}`}>
                 I am a recent Bachelor of Science in Information Technology graduate with foundational knowledge in programming, web development, and database management, and game development. During my studies, I developed strong problem-solving skills and gained experience working with different technologies through academic projects and hands-on activities.
               </p>
 
-              <p className="text-gray-700 text-sm sm:text-lg lg:text-sm leading-relaxed mt-4">
+              <p className={`text-sm sm:text-lg lg:text-sm leading-relaxed mt-4 ${textSecondary}`}>
                 As a fresh graduate, I am eager to begin my career in the IT industry and continuously improve my technical and professional skills. I am highly motivated, adaptable, and ready to contribute to a team while learning and growing in a dynamic work environmen
               </p>
             </div>
 
 
             {/* Tech Stack */}
-            <div className="bg-transparent border border-gray-100 rounded-xl p-6 -mt-5 shadow-md hover:shadow-lg transition">
+            <div className={`${cardClass} -mt-5`}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Technical Skills
               </h2>
@@ -308,16 +371,7 @@ export default function Portfolio() {
                   </h3>
                   <div className="flex justify-start flex-wrap gap-2">
                     {frontendSkills.map((skill, index) => (
-                      <span
-                        key={index}
-                        className="px-2 py-2 text-xs lg:text-xs
-  border border-gray-100 rounded-lg
-  text-gray-700 bg-gray-100
-  shadow-sm
-  transition-transform transition-shadow
-  duration-150 ease-out
-  hover:-translate-y-1 hover:shadow-lg"
-                      >
+                      <span key={index} className={chipClass}>
                         {skill}
                       </span>
 
@@ -332,10 +386,7 @@ export default function Portfolio() {
                   </h3>
                   <div className="flex justify-start flex-wrap gap-2">
                     {backendSkills.map((skill, index) => (
-                      <span
-                        key={index}
-                        className="px-2 py-2 text-xs lg:text-xs border border-gray-100 rounded-lg text-gray-700 bg-gray-100 shadow-sm transition-transform transition-shadow duration-150 ease-out hover:-translate-y-1 hover:shadow-lg"
-                      >
+                      <span key={index} className={chipClass}>
                         {skill}
                       </span>
 
@@ -350,10 +401,7 @@ export default function Portfolio() {
                   </h3>
                   <div className="flex justify-start flex-wrap gap-2">
                     {developerTools.map((skill, index) => (
-                      <span
-                        key={index}
-                        className="px-2 py-2 text-xs lg:text-xs border border-gray-100 rounded-lg text-gray-700 bg-gray-100 shadow-sm transition-transform transition-shadow duration-150 ease-out hover:-translate-y-1 hover:shadow-lg"
-                      >
+                      <span key={index} className={chipClass}>
                         {skill}
                       </span>
 
@@ -376,28 +424,27 @@ export default function Portfolio() {
             className="flex flex-col gap-10"
           >
             {/* Education */}
-            <div className="bg-transparent border border-gray-100 rounded-xl lg:-mt-24 -mt-5 p-6 shadow-md hover:shadow-lg transition
-">
+            <div className={`${cardClass} lg:-mt-24 -mt-5`}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">
                 Educational History
               </h2>
 
               {education.map((edu) => (
                 <div key={edu.id} className="relative pl-6 mb-5">
-                  <div className="absolute left-2 top-0 h-full w-[2px] bg-black/70" />
-                  <div className="absolute left-1 top-2 w-2 h-2 bg-black rounded-full" />
+                  <div className={`absolute left-2 top-0 h-full w-[2px] ${timelineBar}`} />
+                  <div className={`absolute left-1 top-2 w-2 h-2 rounded-full ${timelineDot}`} />
 
                   <div className="pl-4">
                     <h3 className="text-base sm:text-lg font-semibold">
                       {edu.institution}
                     </h3>
-                    <p className="text-gray-700 text-sm">
+                    <p className={`text-sm ${textSecondary}`}>
                       {edu.degree}
                     </p>
-                    <p className="text-gray-600 text-xs italic font-medium">
+                    <p className={`text-xs italic font-medium ${textMuted2}`}>
                       {edu.latin}
                     </p>
-                    <span className="text-gray-500 text-xs">
+                    <span className={`text-xs ${textMuted}`}>
                       {edu.year}
                     </span>
                   </div>
@@ -406,28 +453,27 @@ export default function Portfolio() {
             </div>
 
             {/* Work Experience */}
-            <div className="bg-transparent border border-gray-100 rounded-xl -mt-5 p-6 shadow-md hover:shadow-lg transition
-">
+            <div className={`${cardClass} -mt-5`}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">
                 Work Experience
               </h2>
 
               {workExperience.map((work, index) => (
                 <div key={index} className="relative pl-6 mb-6">
-                  <div className="absolute left-2 top-0 h-full w-[2px] bg-black/70" />
-                  <div className="absolute left-1 top-2 w-2 h-2 bg-black rounded-full" />
+                  <div className={`absolute left-2 top-0 h-full w-[2px] ${timelineBar}`} />
+                  <div className={`absolute left-1 top-2 w-2 h-2 rounded-full ${timelineDot}`} />
 
                   <div className="pl-4">
                     <h3 className="text-base sm:text-lg font-semibold">
                       {work.company}
                     </h3>
-                    <p className="text-gray-700 text-sm">
+                    <p className={`text-sm ${textSecondary}`}>
                       {work.role}
                     </p>
-                    <span className="text-gray-500 text-xs">
+                    <span className={`text-xs ${textMuted}`}>
                       {work.duration}
                     </span>
-                    <p className="text-xs text-gray-600 mt-1">
+                    <p className={`text-xs mt-1 ${textMuted2}`}>
                       {work.description}
                     </p>
                   </div>
@@ -439,14 +485,12 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section className="bg-gray-100 py-16 px-4 sm:px-6">
+      <section className="py-16 px-4 sm:px-6 transition-colors duration-300">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
           {/* Skills*/}
           <div id="skills-section">
-            <div
-              className="bg-transparent border border-gray-100 rounded-xl -mt-32 p-6 shadow-md hover:shadow-lg transition"
-            >
+            <div className={`${cardClass} -mt-32`}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Skills
               </h2>
@@ -459,17 +503,18 @@ export default function Portfolio() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.05 }}
                     viewport={{ once: true }}
-                    className="bg-gray-100 rounded-lg p-3 shadow-sm
-                     flex flex-col items-center justify-center
-                     hover:shadow-md hover:-translate-y-1
-                     transition-all duration-300"
+                    className={`rounded-lg p-3 shadow-sm flex flex-col items-center justify-center hover:shadow-md hover:-translate-y-1 transition-all duration-300 ${
+                      darkMode ? "bg-neutral-800" : "bg-gray-100"
+                    }`}
                   >
                     <img
                       src={skill.logo}
                       alt={skill.name}
-                      className="w-7 h-7 object-contain mb-2"
+                      className={`w-7 h-7 object-contain mb-2 transition-all duration-300 ${
+                        darkMode ? "invert" : ""
+                      }`}
                     />
-                    <span className="text-xs sm:text-sm font-semibold text-center text-gray-700">
+                    <span className={`text-xs sm:text-sm font-semibold text-center ${textSecondary}`}>
                       {skill.name}
                     </span>
                   </motion.div>
@@ -482,9 +527,7 @@ export default function Portfolio() {
           <div className="flex flex-col">
 
             <motion.div
-              className="bg-transparent border border-gray-100 rounded-xl p-6
-    shadow-md hover:shadow-lg transition-all duration-300
-    mt-0 lg:-mt-52 xl:-mt-56 min-w-0"
+              className={`${cardClass} mt-0 lg:-mt-52 xl:-mt-56 min-w-0 duration-300`}
             >
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">
                 Recent Projects
@@ -512,7 +555,7 @@ export default function Portfolio() {
                     {project.title}
                   </h3>
 
-                  <p className="text-sm text-gray-700 mt-2">
+                  <p className={`text-sm mt-2 ${textSecondary}`}>
                     {project.description}
                   </p>
 
@@ -524,7 +567,7 @@ export default function Portfolio() {
                           key={tech}
                           src={`/${tech.toLowerCase()}.png`}
                           alt={tech}
-                          className="w-6 h-6"
+                          className={`w-6 h-6 transition-all duration-300 ${darkMode ? "invert" : ""}`}
                         />
                       ))}
                     </div>
@@ -535,9 +578,11 @@ export default function Portfolio() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`group inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 ${project.title?.toLowerCase() === "yapak"
-                          ? "hover:bg-green-700"
-                          : "hover:bg-blue-900"
+                        className={`group inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-transform duration-300 hover:-translate-y-1 ${
+                          darkMode ? "bg-white text-black" : "bg-black text-white"
+                        } ${project.title?.toLowerCase() === "yapak"
+                          ? "hover:bg-green-700 hover:text-white"
+                          : "hover:bg-blue-900 hover:text-white"
                           }`}
                       >
                         View
@@ -552,17 +597,17 @@ export default function Portfolio() {
               </motion.div>
 
               {/* Navigation */}
-              <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
+              <div className={`flex justify-between items-center mt-6 pt-4 border-t ${darkMode ? "border-neutral-700" : "border-gray-200"}`}>
                 <button
                   onClick={prevProject}
-                  className="text-sm font-medium text-gray-600 hover:text-black transition"
+                  className={`text-sm font-medium transition ${darkMode ? "text-gray-400 hover:text-white" : "text-gray-600 hover:text-black"}`}
                 >
                   ← Prev
                 </button>
 
                 <button
                   onClick={nextProject}
-                  className="text-sm font-medium text-gray-600 hover:text-black transition"
+                  className={`text-sm font-medium transition ${darkMode ? "text-gray-400 hover:text-white" : "text-gray-600 hover:text-black"}`}
                 >
                   Next →
                 </button>
@@ -575,7 +620,7 @@ export default function Portfolio() {
       {/* Contact Section */}
       <section
         id="contact-section"
-        className="w-full bg-gray-100 mb-6 -mt-4 lg:-mt-32 py-16 sm:py-24 px-4 sm:px-6"
+        className="w-full mb-6 -mt-4 lg:-mt-32 py-16 sm:py-24 px-4 sm:px-6 transition-colors duration-300"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -592,11 +637,11 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="flex-1 -mt-24 sm:-mt-16 lg:mt-0"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-poppins mb-6 text-gray-900">
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold font-poppins mb-6 ${darkMode ? "text-white" : "text-gray-900"}`}>
               Contact
             </h2>
 
-            <p className="text-sm sm:text-base text-gray-700 max-w-md mb-8 leading-relaxed">
+            <p className={`text-sm sm:text-base max-w-md mb-8 leading-relaxed ${textSecondary}`}>
               Feel free to reach out if you have any questions, project ideas, job offers,
               or just want to connect!
             </p>
@@ -614,17 +659,9 @@ export default function Portfolio() {
                   id="name"
                   placeholder=" "
                   required
-                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
-                       placeholder-transparent focus:outline-none focus:ring-2 focus:ring-black"
+                  className={inputClass}
                 />
-                <label
-                  htmlFor="name"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
-                       transition-all duration-200
-                       peer-placeholder-shown:top-1/2
-                       peer-focus:top-0 peer-focus:text-xs
-                       peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-xs"
-                >
+                <label htmlFor="name" className={labelClass}>
                   Your Name
                 </label>
               </motion.div>
@@ -642,17 +679,9 @@ export default function Portfolio() {
                   id="email"
                   placeholder=" "
                   required
-                  className="peer h-12 w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
-                       placeholder-transparent focus:outline-none focus:ring-2 focus:ring-black"
+                  className={inputClass}
                 />
-                <label
-                  htmlFor="email"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
-                       transition-all duration-200
-                       peer-placeholder-shown:top-1/2
-                       peer-focus:top-0 peer-focus:text-xs
-                       peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-xs"
-                >
+                <label htmlFor="email" className={labelClass}>
                   Your Email
                 </label>
               </motion.div>
@@ -670,17 +699,9 @@ export default function Portfolio() {
                   rows={5}
                   placeholder=" "
                   required
-                  className="peer w-full border border-gray-300 rounded-lg px-3 pt-4 pb-1 text-sm sm:text-base
-                       placeholder-transparent focus:outline-none focus:ring-2 focus:ring-black resize-none"
+                  className={`${inputClass} resize-none`}
                 />
-                <label
-                  htmlFor="message"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-sm sm:text-base text-gray-700 bg-gray-100 px-1
-                       transition-all duration-200
-                       peer-placeholder-shown:top-1/2
-                       peer-focus:top-0 peer-focus:text-xs
-                       peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:text-xs"
-                >
+                <label htmlFor="message" className={labelClass}>
                   Your Message
                 </label>
               </motion.div>
@@ -690,9 +711,11 @@ export default function Portfolio() {
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="bg-transparent text-black px-6 py-3 rounded-lg
-           border border-gray-300
-           hover:bg-gray-900 hover:text-white transition flex items-center gap-2"
+                className={`px-6 py-3 rounded-lg border transition flex items-center gap-2 ${
+                  darkMode
+                    ? "bg-transparent text-white border-neutral-600 hover:bg-white hover:text-black"
+                    : "bg-transparent text-black border-gray-300 hover:bg-gray-900 hover:text-white"
+                }`}
               >
                 Send Message
                 <TbArrowUpRight className="w-5 h-5" />
@@ -709,7 +732,7 @@ export default function Portfolio() {
           href="https://github.com/roserossssss"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-black hover:text-green-500 transition duration-300"
+          className={`transition duration-300 hover:text-green-500 ${darkMode ? "text-white" : "text-black"}`}
         >
           <Github size={24} className="sm:size-[28px]" />
         </a>
@@ -717,7 +740,7 @@ export default function Portfolio() {
           href="https://www.linkedin.com/in/althea-rose-sardaña-335b60297"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-black hover:text-yellow-500 transition duration-300"
+          className={`transition duration-300 hover:text-yellow-500 ${darkMode ? "text-white" : "text-black"}`}
         >
           <Linkedin size={24} className="sm:size-[28px]" />
         </a>
@@ -725,14 +748,14 @@ export default function Portfolio() {
           href="https://mail.google.com/mail/?view=cm&fs=1&to=queeniesardana95@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-black hover:text-red-500 transition duration-300"
+          className={`transition duration-300 hover:text-red-500 ${darkMode ? "text-white" : "text-black"}`}
         >
           <Mail size={24} className="sm:size-[28px]" />
         </a>
       </div>
 
       {/* Footer Section */}
-      <footer className="fixed bottom-0 left-0 w-full h-16 bg-black py-6 px-6 sm:px-10 flex items-center justify-between z-50">
+      <footer className={`fixed bottom-0 left-0 w-full h-16 py-6 px-6 sm:px-10 flex items-center justify-between z-50 transition-colors duration-300 ${darkMode ? "bg-black" : "bg-black"}`}>
         <div className="hidden sm:block w-1/3"></div>
 
         <div className="relative flex flex-col items-end ml-auto pr-4 sm:pr-0">
