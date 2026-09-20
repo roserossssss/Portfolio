@@ -230,7 +230,7 @@ export default function Portfolio() {
       </button>
 
       {/* Main Section */}
-      <section id="landing" className="pt-16 px-4 mb-10 sm:px-6">
+      <section id="landing" className="pt-16 px-4 mb-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <motion.div
             className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8"
@@ -328,7 +328,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section id="about-section" className={`py-20 px-4 sm:px-6 transition-colors duration-300`}>
+      <section id="about-section" className={`pt-6 pb-20 px-4 sm:px-6 transition-colors duration-300`}>
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
 
           <motion.div
@@ -342,7 +342,7 @@ export default function Portfolio() {
             className="flex flex-col gap-10"
           >
             {/* About Me */}
-            <div className={`${cardClass} -mt-24`}>
+            <div className={cardClass}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 About Me
               </h2>
@@ -357,7 +357,7 @@ export default function Portfolio() {
 
 
             {/* Tech Stack */}
-            <div className={`${cardClass} -mt-5`}>
+            <div className={cardClass}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Technical Skills
               </h2>
@@ -411,86 +411,9 @@ export default function Portfolio() {
 
               </div>
             </div>
-          </motion.div>
 
-          <motion.div
-            ref={aboutMeAnim.ref}
-            initial="hidden"
-            animate={aboutMeAnim.controls}
-            variants={{
-              hidden: { opacity: 0, x: 30 },
-              visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }
-            }}
-            className="flex flex-col gap-10"
-          >
-            {/* Education */}
-            <div className={`${cardClass} lg:-mt-24 -mt-5`}>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-6">
-                Educational History
-              </h2>
-
-              {education.map((edu) => (
-                <div key={edu.id} className="relative pl-6 mb-5">
-                  <div className={`absolute left-2 top-0 h-full w-[2px] ${timelineBar}`} />
-                  <div className={`absolute left-1 top-2 w-2 h-2 rounded-full ${timelineDot}`} />
-
-                  <div className="pl-4">
-                    <h3 className="text-base sm:text-lg font-semibold">
-                      {edu.institution}
-                    </h3>
-                    <p className={`text-sm ${textSecondary}`}>
-                      {edu.degree}
-                    </p>
-                    <p className={`text-xs italic font-medium ${textMuted2}`}>
-                      {edu.latin}
-                    </p>
-                    <span className={`text-xs ${textMuted}`}>
-                      {edu.year}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Work Experience */}
-            <div className={`${cardClass} -mt-5`}>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-6">
-                Work Experience
-              </h2>
-
-              {workExperience.map((work, index) => (
-                <div key={index} className="relative pl-6 mb-6">
-                  <div className={`absolute left-2 top-0 h-full w-[2px] ${timelineBar}`} />
-                  <div className={`absolute left-1 top-2 w-2 h-2 rounded-full ${timelineDot}`} />
-
-                  <div className="pl-4">
-                    <h3 className="text-base sm:text-lg font-semibold">
-                      {work.company}
-                    </h3>
-                    <p className={`text-sm ${textSecondary}`}>
-                      {work.role}
-                    </p>
-                    <span className={`text-xs ${textMuted}`}>
-                      {work.duration}
-                    </span>
-                    <p className={`text-xs mt-1 ${textMuted2}`}>
-                      {work.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-        </div>
-      </section>
-
-      <section className="py-16 px-4 sm:px-6 transition-colors duration-300">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-
-          {/* Skills*/}
-          <div id="skills-section">
-            <div className={`${cardClass} -mt-32`}>
+            {/* Skills */}
+            <div id="skills-section" className={cardClass}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Skills
               </h2>
@@ -521,13 +444,79 @@ export default function Portfolio() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Recent Projects */}
-          <div className="flex flex-col">
+          <motion.div
+            ref={aboutMeAnim.ref}
+            initial="hidden"
+            animate={aboutMeAnim.controls}
+            variants={{
+              hidden: { opacity: 0, x: 30 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+            }}
+            className="flex flex-col gap-10"
+          >
+            {/* Education */}
+            <div className={cardClass}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+                Educational History
+              </h2>
 
+              {education.map((edu) => (
+                <div key={edu.id} className="relative pl-6 mb-5">
+                  <div className={`absolute left-2 top-0 h-full w-[2px] ${timelineBar}`} />
+                  <div className={`absolute left-1 top-2 w-2 h-2 rounded-full ${timelineDot}`} />
+
+                  <div className="pl-4">
+                    <h3 className="text-base sm:text-lg font-semibold">
+                      {edu.institution}
+                    </h3>
+                    <p className={`text-sm ${textSecondary}`}>
+                      {edu.degree}
+                    </p>
+                    <p className={`text-xs italic font-medium ${textMuted2}`}>
+                      {edu.latin}
+                    </p>
+                    <span className={`text-xs ${textMuted}`}>
+                      {edu.year}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Work Experience */}
+            <div className={cardClass}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+                Work Experience
+              </h2>
+
+              {workExperience.map((work, index) => (
+                <div key={index} className="relative pl-6 mb-6">
+                  <div className={`absolute left-2 top-0 h-full w-[2px] ${timelineBar}`} />
+                  <div className={`absolute left-1 top-2 w-2 h-2 rounded-full ${timelineDot}`} />
+
+                  <div className="pl-4">
+                    <h3 className="text-base sm:text-lg font-semibold">
+                      {work.company}
+                    </h3>
+                    <p className={`text-sm ${textSecondary}`}>
+                      {work.role}
+                    </p>
+                    <span className={`text-xs ${textMuted}`}>
+                      {work.duration}
+                    </span>
+                    <p className={`text-xs mt-1 ${textMuted2}`}>
+                      {work.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Recent Projects */}
             <motion.div
-              className={`${cardClass} mt-0 lg:-mt-52 xl:-mt-56 min-w-0 duration-300`}
+              className={`${cardClass} min-w-0 duration-300`}
             >
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">
                 Recent Projects
@@ -613,14 +602,15 @@ export default function Portfolio() {
                 </button>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
+
         </div>
       </section>
 
       {/* Contact Section */}
       <section
         id="contact-section"
-        className="w-full mb-6 -mt-4 lg:-mt-32 py-16 sm:py-24 px-4 sm:px-6 transition-colors duration-300"
+        className="w-full mb-6 py-16 sm:py-24 px-4 sm:px-6 transition-colors duration-300"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -635,7 +625,7 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="flex-1 -mt-24 sm:-mt-16 lg:mt-0"
+            className="flex-1"
           >
             <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold font-poppins mb-6 ${darkMode ? "text-white" : "text-gray-900"}`}>
               Contact
