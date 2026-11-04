@@ -29,11 +29,21 @@ export default function Portfolio() {
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   // Reusable dark-mode-aware class strings
-  const cardClass = `rounded-xl p-6 shadow-md hover:shadow-lg transition-colors duration-300 border ${
+  // Each card gets its own hover glow color
+  const glowColors = {
+    pink: "hover:shadow-[0_0_18px_rgba(244,114,182,0.22)]",
+    blue: "hover:shadow-[0_0_18px_rgba(96,165,250,0.22)]",
+    green: "hover:shadow-[0_0_18px_rgba(74,222,128,0.22)]",
+    amber: "hover:shadow-[0_0_18px_rgba(251,191,36,0.22)]",
+    purple: "hover:shadow-[0_0_18px_rgba(192,132,252,0.22)]",
+    orange: "hover:shadow-[0_0_18px_rgba(251,146,60,0.22)]",
+  };
+
+  const cardClass = (color) => `rounded-xl p-6 shadow-md border transition-all duration-300 ${
     darkMode
       ? "bg-neutral-800 border-neutral-700 text-white"
       : "bg-transparent border-gray-100 text-black"
-  }`;
+  } ${glowColors[color]}`;
 
   const textSecondary = darkMode ? "text-gray-300" : "text-gray-700";
   const textMuted = darkMode ? "text-gray-400" : "text-gray-500";
@@ -155,6 +165,7 @@ export default function Portfolio() {
     { logo: "database.png", name: "Database Management" },
     { logo: "cyber.png", name: "Cybersecurity" },
     { logo: "virtualization.png", name: "Virtualization" },
+    { logo: "projectmanagement.png", name: "Project Management" },
   ];
 
   // Past Projects Data
@@ -342,7 +353,7 @@ export default function Portfolio() {
             className="flex flex-col gap-10"
           >
             {/* About Me */}
-            <div className={cardClass}>
+            <div className={cardClass("pink")}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 About Me
               </h2>
@@ -351,13 +362,13 @@ export default function Portfolio() {
               </p>
 
               <p className={`text-sm sm:text-lg lg:text-sm leading-relaxed mt-4 ${textSecondary}`}>
-                As a fresh graduate, I am eager to begin my career in the IT industry and continuously improve my technical and professional skills. I am highly motivated, adaptable, and ready to contribute to a team while learning and growing in a dynamic work environmen
+                As a fresh graduate, I am eager to begin my career in the IT industry and continuously improve my technical and professional skills. I am highly motivated, adaptable, and ready to contribute to a team while learning and growing in a dynamic work environment.
               </p>
             </div>
 
 
             {/* Tech Stack */}
-            <div className={cardClass}>
+            <div className={cardClass("blue")}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Technical Skills
               </h2>
@@ -413,7 +424,7 @@ export default function Portfolio() {
             </div>
 
             {/* Skills */}
-            <div id="skills-section" className={cardClass}>
+            <div id="skills-section" className={cardClass("green")}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                 Skills
               </h2>
@@ -457,13 +468,13 @@ export default function Portfolio() {
             className="flex flex-col gap-10"
           >
             {/* Education */}
-            <div className={cardClass}>
+            <div className={cardClass("amber")}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">
                 Educational History
               </h2>
 
-              {education.map((edu) => (
-                <div key={edu.id} className="relative pl-6 mb-5">
+              {education.map((edu, index) => (
+                <div key={index} className="relative pl-6 mb-5">
                   <div className={`absolute left-2 top-0 h-full w-[2px] ${timelineBar}`} />
                   <div className={`absolute left-1 top-2 w-2 h-2 rounded-full ${timelineDot}`} />
 
@@ -486,7 +497,7 @@ export default function Portfolio() {
             </div>
 
             {/* Work Experience */}
-            <div className={cardClass}>
+            <div className={cardClass("purple")}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">
                 Work Experience
               </h2>
@@ -516,7 +527,7 @@ export default function Portfolio() {
 
             {/* Recent Projects */}
             <motion.div
-              className={`${cardClass} min-w-0 duration-300`}
+              className={`${cardClass("orange")} min-w-0`}
             >
               <h2 className="text-2xl sm:text-3xl font-bold mb-6">
                 Recent Projects
@@ -524,7 +535,7 @@ export default function Portfolio() {
 
               {/* Project Content */}
               <motion.div
-                key={project.id}
+                key={currentProjectIndex}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
